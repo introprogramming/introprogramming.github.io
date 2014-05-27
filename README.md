@@ -1,4 +1,3 @@
-introprogramming.github.io
-==========================
+# Course website
 
-Course website.
+For news and information about the course.
