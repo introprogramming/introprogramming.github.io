@@ -1,0 +1,26 @@
+{
+  "name": "introprogramming-website",
+  "version": "0.1.0",
+  "description": "Website for introductory programming course at Chalmers",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/introprogramming/introprogramming.github.io.git"
+  },
+  "author": "Johan Brook",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/introprogramming/introprogramming.github.io/issues"
+  },
+  "homepage": "https://github.com/introprogramming/introprogramming.github.io",
+  "devDependencies": {
+    "gulp": "*",
+    "gulp-sass": "*",
+    "gulp-livereload": "~1.5.0",
+    "gulp-util": "~2.2.14",
+    "gulp-watch": "~0.6.5"
+  }
+}

@@ -1,0 +1,84 @@
+/*
+
+INTRODUCTORY PROGRAMMING COURSE
+
+Software Engineering program at Chalmers University of Technology
+
+Made by Johan Brook.
+
+--------------------------------------------------------------- */
+
+$accent:   #2F8EED;
+$leading:  1.5em;
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #fff;
+  font: 1.1em/#{$leading} "Open Sans", sans-serif;
+  color: #444;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  max-width: 43em;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  margin: 0 0 $leading / 2;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 1.8em;
+  letter-spacing: -1px;
+  margin-bottom: 0;
+}
+
+.subhead {
+  font-size: 1.2em;
+}
+
+a {
+  color: $accent;
+  font-weight: bold;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+    border-bottom: 1px solid $accent;
+  }
+}
+
+[role="banner"] {
+  background-color: $accent;
+  color: #fff;
+  text-align: center;
+  padding: 4em 5%;
+  margin-bottom: $leading;
+  text-shadow: rgba(#000, .2) 0 1px 2px;
+
+  h1 {
+    font-size: 2.4em;
+  }
+}
+
+
+[role="contentinfo"] {
+  margin-top: $leading*2;
+  text-align: center;
+  font-size: .8em;
+  color: #bbb;
+}
