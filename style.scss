@@ -9,6 +9,10 @@ Made by Johan Brook.
 --------------------------------------------------------------- */
 
 $accent:   #2F8EED;
+$light:    #9C9975;
+$gray:     #999;
+$comp:     #563d7c;
+
 $leading:  1.5em;
 
 * {
@@ -18,33 +22,37 @@ $leading:  1.5em;
 }
 
 html {
-  background-color: #fff;
-  font: 1.1em/#{$leading} "Open Sans", sans-serif;
+  background: #fff url('images/ribbon.png') repeat-x -25% -4px;
+  font: 1em/#{$leading} "Open Sans", sans-serif;
   color: #444;
 }
 
 body {
-  margin: 0;
+  margin: 0 5%;
   padding: 0;
 }
 
-.wrapper {
-  max-width: 43em;
-  margin: 0 auto;
-  padding: 0 5%;
+::selection {
+  background-color: rgba($light, .2);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: normal;
   -webkit-font-smoothing: antialiased;
   margin: 0 0 $leading / 2;
 }
 
 h1 {
-  font-weight: bold;
   font-size: 1.8em;
   letter-spacing: -1px;
-  margin-bottom: 0;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 1.2em;
+
+  p ~ & {
+    margin-top: $leading;
+  }
 }
 
 .subhead {
@@ -63,22 +71,91 @@ a {
 }
 
 [role="banner"] {
-  background-color: $accent;
-  color: #fff;
-  text-align: center;
-  padding: 4em 5%;
+  padding: $leading*2 0 $leading*2;
   margin-bottom: $leading;
-  text-shadow: rgba(#000, .2) 0 1px 2px;
 
   h1 {
-    font-size: 2.4em;
+    font-family: Pacifico, "Open Sans", sans-serif;
+    font-weight: normal;
+    line-height: 1.7;
+    font-size: 4.6em;
+    margin: 0;
+
+    em {
+      font-family: "Open Sans", sans-serif;
+      font-style: normal;
+      display: block;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: .3em;
+      color: $light;
+
+      position: relative;
+      left: 4em;
+      top: 1em;
+    }
   }
 }
 
+p {
+  margin: 0 0 $leading;
+}
 
 [role="contentinfo"] {
+  padding: $leading 0;
   margin-top: $leading*2;
-  text-align: center;
   font-size: .8em;
-  color: #bbb;
+  color: $gray;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+}
+
+%affix {
+  right: 5%;
+}
+
+.affix {
+  @extend %affix;
+  position: fixed;
+  top: 90px;
+}
+
+.affix-top {
+  @extend %affix;
+  position: absolute;
+}
+
+[role="main"] {
+  width: 66%;
+}
+
+[role="navigation"] {
+  float: right;
+  width: 20%;
+
+  .active {
+    a, a:hover {
+      color: $comp;
+      border-left: 2px solid $comp;
+      padding-left: 19px;
+      font-weight: 600;
+    }
+  }
+
+  a {
+    font-weight: normal;
+    color: $gray;
+    display: block;
+    padding: .3em 20px;
+    border-left: 1px solid transparent;
+
+    &:hover {
+      border: 0;
+      border-left: 1px solid lighten($light, 30%);
+      color: #333;
+    }
+  }
 }

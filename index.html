@@ -3,23 +3,46 @@
   <head>
     <title>Introkurs i Programmering</title>
     <meta charset="utf-8" />
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,600,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Pacifico|Open+Sans:400italic,700italic,400,600,700,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+
+  <body data-spy="scroll" data-offset="50" data-target=".scrollspy">
 
     <header role="banner">
-      <h1>Introduktionskurs i Programmering</h1>
-      <p class="subhead">
-        IT-programmet, Chalmers tekniska högskola
-      </p>
+      <h1><em>Introduktionskurs i</em>Programmering</h1>
     </header>
 
     <div class="wrapper">
+
+      <nav role="navigation" class="scrollspy" data-spy="affix" data-offset-top="176">
+        <ul class="nav">
+          <li><a href="#main1" data-scroll>Link</a></li>
+          <li><a href="#main2">Link 2</a></li>
+        </ul>
+      </nav>
+
       <main role="main">
 
-        <section>
+        <section id="main1">
           <h1>Main heading</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+
+          <h2>Secondary heading</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </section>
+
+        <section id="main2">
+          <h1>Main heading 2</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+
+          <h2>Secondary heading</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </p>
@@ -31,5 +54,20 @@
         Site hosted on <a href="https://github.com/introprogramming/introprogramming.github.io">GitHub</a>.
       </footer>
     </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="vendor/bootstrap.min.js"></script>
+    <script src="vendor/smooth-scroll.js"></script>
+    <script>
+      $(function() {
+        smoothScroll.init({
+          offset: 50,
+          easing: 'easeInOutQuad',
+          callbackAfter: function() {
+            $('[data-spy="scroll"]').scrollspy('refresh')
+          }
+        })
+      })
+    </script>
   </body>
 </html>

@@ -13,29 +13,30 @@ Made by Johan Brook.
   box-sizing: border-box; }
 
 html {
-  background-color: #fff;
-  font: 1.1em/1.5em "Open Sans", sans-serif;
+  background: #fff url('images/ribbon.png') repeat-x -25% -4px;
+  font: 1em/1.5em "Open Sans", sans-serif;
   color: #444; }
 
 body {
-  margin: 0;
+  margin: 0 5%;
   padding: 0; }
 
-.wrapper {
-  max-width: 43em;
-  margin: 0 auto;
-  padding: 0 5%; }
+::selection {
+  background-color: rgba(156, 153, 117, 0.2); }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: normal;
   -webkit-font-smoothing: antialiased;
   margin: 0 0 0.75em; }
 
 h1 {
-  font-weight: bold;
   font-size: 1.8em;
-  letter-spacing: -1px;
-  margin-bottom: 0; }
+  letter-spacing: -1px; }
+
+h2 {
+  font-weight: 600;
+  font-size: 1.2em; }
+  p ~ h2 {
+    margin-top: 1.5em; }
 
 .subhead {
   font-size: 1.2em; }
@@ -49,17 +50,67 @@ a {
     border-bottom: 1px solid #2F8EED; }
 
 [role="banner"] {
-  background-color: #2F8EED;
-  color: #fff;
-  text-align: center;
-  padding: 4em 5%;
-  margin-bottom: 1.5em;
-  text-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px; }
+  padding: 3em 0 3em;
+  margin-bottom: 1.5em; }
   [role="banner"] h1 {
-    font-size: 2.4em; }
+    font-family: Pacifico, "Open Sans", sans-serif;
+    font-weight: normal;
+    line-height: 1.7;
+    font-size: 4.6em;
+    margin: 0; }
+    [role="banner"] h1 em {
+      font-family: "Open Sans", sans-serif;
+      font-style: normal;
+      display: block;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: #9C9975;
+      position: relative;
+      left: 4em;
+      top: 1em; }
+
+p {
+  margin: 0 0 1.5em; }
 
 [role="contentinfo"] {
+  padding: 1.5em 0;
   margin-top: 3em;
-  text-align: center;
   font-size: 0.8em;
-  color: #bbb; }
+  color: #999; }
+
+nav ul {
+  list-style: none;
+  margin: 0; }
+
+.affix, .affix-top {
+  right: 5%; }
+
+.affix {
+  position: fixed;
+  top: 90px; }
+
+.affix-top {
+  position: absolute; }
+
+[role="main"] {
+  width: 66%; }
+
+[role="navigation"] {
+  float: right;
+  width: 20%; }
+  [role="navigation"] .active a, [role="navigation"] .active a:hover {
+    color: #563d7c;
+    border-left: 2px solid #563d7c;
+    padding-left: 19px;
+    font-weight: 600; }
+  [role="navigation"] a {
+    font-weight: normal;
+    color: #999;
+    display: block;
+    padding: 0.3em 20px;
+    border-left: 1px solid transparent; }
+    [role="navigation"] a:hover {
+      border: 0;
+      border-left: 1px solid #dcdbce;
+      color: #333; }
