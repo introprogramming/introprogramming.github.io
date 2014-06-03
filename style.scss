@@ -102,10 +102,44 @@ p {
 }
 
 [role="contentinfo"] {
-  padding: $leading 0;
-  margin-top: $leading*2;
+  margin: $leading*3 0;
   font-size: .8em;
   color: $gray;
+  display: table;
+
+  & > p {
+    display: table-cell;
+    vertical-align: middle;
+
+    &:last-child {
+      padding-left: 5em;
+    }
+  }
+
+  .schools {
+
+    img {
+      max-width: 200px;
+      display: block;
+      vertical-align: middle;
+    }
+
+    .gu {
+      max-width: 350px;
+      position: relative;
+      top: 4px;
+    }
+
+    a {
+      float: left;
+      margin-right: 2em;
+
+      &:hover {
+        border: 0;
+        opacity: .8;
+      }
+    }
+  }
 }
 
 nav ul {
