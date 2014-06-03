@@ -5,6 +5,9 @@
     <meta charset="utf-8" />
     <link href='http://fonts.googleapis.com/css?family=Pacifico|Open+Sans:400italic,700italic,400,600,700,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="style.css" />
+
+    <meta name="description" content="" />
+    <meta name="keywords" content="chalmers, gothenburg university" />
   </head>
 
   <body data-spy="scroll" data-offset="50" data-target=".scrollspy">
@@ -17,15 +20,13 @@
 
       <nav role="navigation" class="scrollspy" data-spy="affix" data-offset-top="176">
         <ul class="nav">
-          <li><a href="#main1" data-scroll>Link</a></li>
-          <li><a href="#main2">Link 2</a></li>
         </ul>
       </nav>
 
       <main role="main">
 
-        <section id="main1">
-          <h1>Main heading</h1>
+        <section>
+          <h1 id="main1">Main heading</h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </p>
@@ -36,8 +37,8 @@
           </p>
         </section>
 
-        <section id="main2">
-          <h1>Main heading 2</h1>
+        <section>
+          <h1 id="main2">Main heading 2</h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </p>
@@ -59,13 +60,53 @@
     <script src="vendor/bootstrap.min.js"></script>
     <script src="vendor/smooth-scroll.js"></script>
     <script>
+      var buildNavigation = (function($) {
+
+        var defaults = {
+          container: "body",
+          nodes: "h1",
+          navigation: "[role='navigation'] ul"
+        }
+
+        return function(options) {
+          options = $.extend({}, defaults, options)
+
+          var headings = $(options.container).find(options.nodes),
+              frag = []
+
+          headings.each(function(i, item) {
+            if(!item.id) return;
+
+            var li = $("<li />"),
+
+            a = $("<a />", {
+              href: "#"+item.id,
+              text: $(item).text()
+            })
+
+            li.append(a)
+            frag.push(li)
+          })
+
+          $(options.navigation).html(frag)
+        }
+
+      })(jQuery)
+
       $(function() {
+
+        // smooth scrolling for anchor links
+
         smoothScroll.init({
           offset: 50,
           easing: 'easeInOutQuad',
           callbackAfter: function() {
             $('[data-spy="scroll"]').scrollspy('refresh')
           }
+        })
+
+        buildNavigation({
+          container: "[role='main']"
         })
       })
     </script>
