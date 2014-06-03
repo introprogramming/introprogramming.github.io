@@ -91,7 +91,7 @@ a {
       color: $light;
 
       position: relative;
-      left: 4em;
+      margin-left: 4em;
       top: 1em;
     }
   }
@@ -130,6 +130,7 @@ nav ul {
 
 [role="main"] {
   width: 66%;
+  max-width: 42em;
 }
 
 [role="navigation"] {

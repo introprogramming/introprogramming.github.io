@@ -67,7 +67,7 @@ a {
       letter-spacing: 0.3em;
       color: #9C9975;
       position: relative;
-      left: 4em;
+      margin-left: 4em;
       top: 1em; }
 
 p {
@@ -94,7 +94,8 @@ nav ul {
   position: absolute; }
 
 [role="main"] {
-  width: 66%; }
+  width: 66%;
+  max-width: 42em; }
 
 [role="navigation"] {
   float: right;
