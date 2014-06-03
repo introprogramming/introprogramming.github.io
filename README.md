@@ -16,7 +16,7 @@ To install all dependencies, run this while in the website directory:
 ```
 npm install
 ```
-After than you should be ready to go.
+After than you should be ready to go. Note that NodeJS and gulp is **only needed in order to compile Sass code**. Writing plain HTML is done as usual.
 
 ## Deploying
 
