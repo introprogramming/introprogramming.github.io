@@ -145,6 +145,7 @@ p {
 nav ul {
   list-style: none;
   margin: 0;
+  padding: 0;
 }
 
 %affix {
@@ -162,14 +163,42 @@ nav ul {
   position: absolute;
 }
 
+.scrollspy {
+  float: right;
+  width: 20%;
+
+  nav {
+    margin-left: -20px;
+  }
+
+  p {
+    margin: 0 0 $leading / 3;
+  }
+
+  .btn-download {
+    width: 100%;
+  }
+
+  .download {
+    text-align: center;
+
+    small a {
+      color: #aaa;
+      transition: color .2s;
+    }
+  }
+
+  &:hover .download small a {
+    color: $accent;
+  }
+}
+
 [role="main"] {
   width: 66%;
   max-width: 42em;
 }
 
 [role="navigation"] {
-  float: right;
-  width: 20%;
 
   .active {
     a, a:hover {
@@ -193,4 +222,44 @@ nav ul {
       color: #333;
     }
   }
+}
+
+/* =BUTTONS
+--------------------------------------------- */
+
+.btn,
+button {
+  $color: saturate(lighten($comp, 20%), 20%);
+  $color-hover: $comp;
+
+  display: inline-block;
+  -webkit-appearance: none;
+  position: relative;
+
+  padding: .6em 1em;
+  border-radius: 4px;
+  text-align: center;
+
+  background-color: #fff;
+  color: $color;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color .1s ease-out;
+  border: 2px solid $color;
+
+  &:hover {
+    border-color: $color-hover;
+    border-width: 2px;
+    color: $color-hover;
+    background-color: rgba($color-hover, .05);
+  }
+
+  &:active {
+    -webkit-transform: scale(.95);
+    transform: scale(.95);
+  }
+}
+
+.btn-download {
+  @extend .btn;
 }

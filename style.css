@@ -100,7 +100,8 @@ p {
 
 nav ul {
   list-style: none;
-  margin: 0; }
+  margin: 0;
+  padding: 0; }
 
 .affix, .affix-top {
   right: 5%; }
@@ -112,25 +113,64 @@ nav ul {
 .affix-top {
   position: absolute; }
 
+.scrollspy {
+  float: right;
+  width: 20%; }
+  .scrollspy nav {
+    margin-left: -20px; }
+  .scrollspy p {
+    margin: 0 0 0.5em; }
+  .scrollspy .btn-download {
+    width: 100%; }
+  .scrollspy .download {
+    text-align: center; }
+    .scrollspy .download small a {
+      color: #aaa;
+      transition: color 0.2s; }
+  .scrollspy:hover .download small a {
+    color: #2F8EED; }
+
 [role="main"] {
   width: 66%;
   max-width: 42em; }
 
-[role="navigation"] {
-  float: right;
-  width: 20%; }
-  [role="navigation"] .active a, [role="navigation"] .active a:hover {
+[role="navigation"] .active a, [role="navigation"] .active a:hover {
+  color: #563d7c;
+  border-left: 2px solid #563d7c;
+  padding-left: 19px;
+  font-weight: 600; }
+[role="navigation"] a {
+  font-weight: normal;
+  color: #999;
+  display: block;
+  padding: 0.3em 20px;
+  border-left: 1px solid transparent; }
+  [role="navigation"] a:hover {
+    border: 0;
+    border-left: 1px solid #dcdbce;
+    color: #333; }
+
+/* =BUTTONS
+--------------------------------------------- */
+.btn, .btn-download, button {
+  display: inline-block;
+  -webkit-appearance: none;
+  position: relative;
+  padding: 0.6em 1em;
+  border-radius: 4px;
+  text-align: center;
+  background-color: #fff;
+  color: #8153cc;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.1s ease-out;
+  border: 2px solid #8153cc; }
+  .btn:hover, .btn-download:hover, button:hover {
+    border-color: #563d7c;
+    border-width: 2px;
     color: #563d7c;
-    border-left: 2px solid #563d7c;
-    padding-left: 19px;
-    font-weight: 600; }
-  [role="navigation"] a {
-    font-weight: normal;
-    color: #999;
-    display: block;
-    padding: 0.3em 20px;
-    border-left: 1px solid transparent; }
-    [role="navigation"] a:hover {
-      border: 0;
-      border-left: 1px solid #dcdbce;
-      color: #333; }
+    background-color: rgba(86, 61, 124, 0.05); }
+  .btn:active, .btn-download:active, button:active {
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95); }
+
