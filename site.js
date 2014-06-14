@@ -1,11 +1,17 @@
 ;(function() {
 
+/*
+  Main GitHub API wrapper
+*/
 GitHub = {
+  // Details ..
   url: "https://api.github.com",
   owner: "introprogramming",
   repo: "exercises",
   readme: "README.md",
   token: "ce7c5b2150374a20aeeaa799867d0d50ae638d28",
+
+  // GET url
 
   get: function(url) {
     return $.ajax({
@@ -17,9 +23,12 @@ GitHub = {
     });
   },
 
+  // Helper function for content paths
   buildURL: function(path) {
     return this.url+"/repos/"+ this.owner +"/"+ this.repo +"/contents"+path
   },
+
+  // GET /exercises
 
   getExercises: function() {
     return this.get(this.buildURL("/exercises")).then(function(res) {
@@ -29,15 +38,20 @@ GitHub = {
     })
   },
 
+  // GET /exercises/:exercise/README.md
+
   getReadmeForExercise: function(exercise) {
     return this.get(this.buildURL("/exercises/"+ exercise +"/"+this.readme))
   }
 }
 
+// Convert base64 encoded string to UTF8
+
 var base64ToUTF8 = function(str) {
   return decodeURIComponent(escape(window.atob(str)))
 }
 
+// Build the list from an exercises object array
 var buildReadmeList = function(exercises) {
   var $container = $(".exercises-list"),
       els = []
@@ -55,6 +69,8 @@ var buildReadmeList = function(exercises) {
 
   $container.html(els)
 }
+
+// Fetch READMEs and build list
 
 var fetchReadmeas = function() {
   var self = this,
