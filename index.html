@@ -71,56 +71,6 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="vendor/bootstrap.min.js"></script>
     <script src="vendor/smooth-scroll.js"></script>
-    <script>
-      var buildNavigation = (function($) {
-
-        var defaults = {
-          container: "body",
-          nodes: "h1",
-          navigation: "[role='navigation'] ul"
-        }
-
-        return function(options) {
-          options = $.extend({}, defaults, options)
-
-          var headings = $(options.container).find(options.nodes),
-              frag = []
-
-          headings.each(function(i, item) {
-            if(!item.id) return;
-
-            var li = $("<li />"),
-
-            a = $("<a />", {
-              href: "#"+item.id,
-              text: $(item).text()
-            })
-
-            li.append(a)
-            frag.push(li)
-          })
-
-          $(options.navigation).html(frag)
-        }
-
-      })(jQuery)
-
-      $(function() {
-
-        // smooth scrolling for anchor links
-
-        smoothScroll.init({
-          offset: 50,
-          easing: 'easeInOutQuad',
-          callbackAfter: function() {
-            $('[data-spy="scroll"]').scrollspy('refresh')
-          }
-        })
-
-        buildNavigation({
-          container: "[role='main']"
-        })
-      })
-    </script>
+    <script src="site.js"></script>
   </body>
 </html>
