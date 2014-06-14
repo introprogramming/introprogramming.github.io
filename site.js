@@ -57,7 +57,7 @@ var buildReadmeList = function(exercises) {
       els = []
 
   exercises.forEach(function(exercise, i) {
-    var content = markdown.toHTML(base64ToUTF8(exercise.data.content))
+    var content = marked(base64ToUTF8(exercise.data.content))
 
     var el = '<li>'+
       '<a data-toggle="collapse" id="t'+i+'" data-parent="#accordion" href="#doc'+i+'">'+ $(content).eq(0).text() +'</a>'+
