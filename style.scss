@@ -61,7 +61,7 @@ h2 {
 
 a {
   color: $accent;
-  font-weight: bold;
+  font-weight: 600;
   text-decoration: none;
 
   &:hover {
@@ -222,6 +222,64 @@ nav ul {
       color: #333;
     }
   }
+}
+
+.exercises-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  $border: 2px solid lighten($light, 30%);
+
+  [data-toggle='collapse'] {
+    font-weight: 600;
+    color: $comp;
+    border: 0;
+    border-top: $border;
+    display: block;
+    padding: .6em 0;
+    position: relative;
+    transition: border-color .1s ease;
+
+    &::after {
+      content: "+";
+      display: inline-block;
+      position: absolute;
+      top: .5em;
+      right: 1em;
+      color: $gray;
+    }
+  }
+
+  & > li:hover {
+    & > [data-toggle="collapse"],
+    & + li > [data-toggle="collapse"] {
+      border-top-color: $comp;
+    }
+  }
+
+  & > li:last-child > [data-toggle='collapse'] {
+    border-bottom: $border;
+  }
+
+  .doc {
+    padding: $leading 0;
+  }
+}
+
+.collapse {
+  display: none;
+
+  &.in {
+    display: block;
+  }
+}
+
+.collapsing {
+  height: 0;
+  position: relative;
+  overflow: hidden;
+  transition: height .35s ease;
 }
 
 /* =BUTTONS

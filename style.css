@@ -43,7 +43,7 @@ h2 {
 
 a {
   color: #2F8EED;
-  font-weight: bold;
+  font-weight: 600;
   text-decoration: none; }
   a:hover {
     text-decoration: none;
@@ -149,6 +149,44 @@ nav ul {
     border: 0;
     border-left: 1px solid #dcdbce;
     color: #333; }
+
+.exercises-list {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  .exercises-list [data-toggle='collapse'] {
+    font-weight: 600;
+    color: #563d7c;
+    border: 0;
+    border-top: 2px solid #dcdbce;
+    display: block;
+    padding: 0.6em 0;
+    position: relative;
+    transition: border-color 0.1s ease; }
+    .exercises-list [data-toggle='collapse']::after {
+      content: "+";
+      display: inline-block;
+      position: absolute;
+      top: 0.5em;
+      right: 1em;
+      color: #999; }
+  .exercises-list > li:hover > [data-toggle="collapse"], .exercises-list > li:hover + li > [data-toggle="collapse"] {
+    border-top-color: #563d7c; }
+  .exercises-list > li:last-child > [data-toggle='collapse'] {
+    border-bottom: 2px solid #dcdbce; }
+  .exercises-list .doc {
+    padding: 1.5em 0; }
+
+.collapse {
+  display: none; }
+  .collapse.in {
+    display: block; }
+
+.collapsing {
+  height: 0;
+  position: relative;
+  overflow: hidden;
+  transition: height 0.35s ease; }
 
 /* =BUTTONS
 --------------------------------------------- */
