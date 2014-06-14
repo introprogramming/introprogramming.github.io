@@ -1,0 +1,76 @@
+#!/usr/bin/env node
+
+var Github = require('github'),
+    Q = require('q'),
+    fs = require('q-io/fs'),
+    markdown = require('marked')
+
+if(process.env.GH_TOKEN === undefined) {
+  console.log("No GH_TOKEN provided.")
+  process.exit(0)
+}
+
+var details = {
+  user: "introprogramming",
+  repo: "exercises",
+  target: "exercises"
+}
+
+var gh = new Github({
+  version: "3.0.0"
+})
+
+var fetchContent = function(path) {
+  var getContent = Q.denodeify(gh.repos.getContent)
+
+  return getContent({
+    user: details.user,
+    repo: details.repo,
+    path: path
+  })
+}
+
+var fetchExercises = function() {
+  return fetchContent("exercises")
+}
+
+var writeExercise = function(fileName, content) {
+  return fs.write(details.target + "/" + fileName, content)
+}
+
+var fetchReadmeas = function() {
+  return fs.makeTree(details.target)
+  .then(fetchExercises)
+  .then(function(exercises) {
+    return Q.all(exercises.map(function(ex) {
+
+      return fetchContent(ex.path+"/README.md")
+        .then(function(readme) {
+          var buf = new Buffer(readme.content, 'base64')
+
+          return Q.all([
+            writeExercise(ex.name+".md", buf.toString()),
+            writeExercise(ex.name+".html", markdown(buf.toString()))
+          ])
+        })
+    }))
+  })
+}
+
+var init = function() {
+
+  gh.authenticate({
+    type: "oauth",
+    token: process.env.GH_TOKEN
+  })
+
+  fetchReadmeas()
+  .then(function(dirs) {
+    console.log(dirs.length + " exercises fetched and saved to /"+details.target)
+  })
+  .catch(function(err) {
+    console.error(err)
+  })
+}
+
+init()
