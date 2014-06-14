@@ -269,6 +269,10 @@ nav ul {
     position: relative;
     transition: border-color .1s ease;
 
+    &:hover::after {
+      color: $comp;
+    }
+
     &::after {
       content: "+";
       display: inline-block;
