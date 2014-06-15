@@ -53,5 +53,11 @@ var init = function() {
     })
 }
 
+// Detect if we're being called directly or require()'d
 
-init()
+if(require.main === module) {
+  init()
+}
+else {
+  module.exports = createArchive
+}

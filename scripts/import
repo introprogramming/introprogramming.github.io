@@ -3,7 +3,8 @@
 var Github = require('github'),
     Q = require('q'),
     fs = require('q-io/fs'),
-    markdown = require('marked')
+    markdown = require('marked'),
+    createArchive = require('./package')
 
 if(process.env.GH_TOKEN === undefined) {
   console.log("No GH_TOKEN provided.")
@@ -58,19 +59,38 @@ var fetchReadmeas = function() {
 }
 
 var init = function() {
+  console.log("Usage: node import [--zip]")
+  var archive = process.argv[2] !== undefined && process.argv[2] === '--zip'
 
   gh.authenticate({
     type: "oauth",
     token: process.env.GH_TOKEN
   })
 
-  fetchReadmeas()
+  var p = fetchReadmeas()
   .then(function(dirs) {
     console.log(dirs.length + " exercises fetched and saved to /"+details.target)
+    return details.target
   })
   .catch(function(err) {
     console.error(err)
   })
+
+  if(archive) {
+    p.then(function(dir) {
+      return createArchive(dir).then(function(files) {
+        console.log('Created '+dir+'.zip, with '+ files.length+' files.')
+        return files
+      })
+    })
+  }
 }
 
-init()
+// Detect if we're being called directly or require()'d
+
+if(require.main === module) {
+  init()
+}
+else {
+  module.exports = fetchReadmeas
+}
