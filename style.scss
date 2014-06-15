@@ -176,6 +176,11 @@ nav ul {
   padding: 0;
 }
 
+small {
+  font-size: .7em;
+  color: $gray;
+}
+
 %affix {
   right: 5%;
 }
@@ -209,6 +214,7 @@ nav ul {
 
   .download {
     text-align: center;
+    margin-bottom: $leading;
 
     small a {
       color: #aaa;

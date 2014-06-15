@@ -125,6 +125,10 @@ nav ul {
   margin: 0;
   padding: 0; }
 
+small {
+  font-size: 0.7em;
+  color: #999; }
+
 .affix, .affix-top {
   right: 5%; }
 
@@ -145,7 +149,8 @@ nav ul {
   .scrollspy .btn-download {
     width: 100%; }
   .scrollspy .download {
-    text-align: center; }
+    text-align: center;
+    margin-bottom: 1.5em; }
     .scrollspy .download small a {
       color: #aaa;
       transition: color 0.2s; }

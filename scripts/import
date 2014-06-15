@@ -1,5 +1,13 @@
 #!/usr/bin/env node
 
+/*
+  Download README files from a GitHub repo and store in a
+  local directory as HTML and Markdown, optionally compressing
+  the directory as a .zip file.
+
+  By Johan Brook, 2014
+*/
+
 var Github = require('github'),
     Q = require('q'),
     fs = require('q-io/fs'),

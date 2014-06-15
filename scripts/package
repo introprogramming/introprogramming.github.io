@@ -1,5 +1,11 @@
 #!/usr/bin/env node
 
+/*
+  Package a folder with files as a .zip.
+
+  By Johan Brook, 2014
+*/
+
 var zip = require('node-zip')(),
     Q = require('q'),
     fs = require('q-io/fs'),
