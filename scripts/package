@@ -3,30 +3,35 @@
 var zip = require('node-zip')(),
     Q = require('q'),
     fs = require('q-io/fs'),
-    path = require('path')
+    path = require('path'),
+    partial = require('partial')
 
 
+var addFileToFolder = function(folder, dir, file) {
+  return fs.read(path.join(dir, file), 'b')
+  .then(function(content) {
+    return folder.file(file, content)
+  })
+}
 
 var createArchive = function(dir) {
-  var folder = zip.folder(dir)
+  var folder = zip.folder(dir),
+      addFile = partial(addFileToFolder, folder, dir)
 
   return fs.list(dir)
   .then(function(files) {
-    return Q.all(files.map(function(file) {
-      return fs.read(path.join(dir, file), 'b')
-      .then(function(content) {
-        return folder.file(file, content)
-      })
-    }))
+    return Q.all(files.map(addFile))
   })
-  .then(function() {
+  .then(function(files) {
     var data = zip.generate({
       base64: false,
       compression: 'DEFLATE',
       type: 'nodebuffer'
     })
 
-    return fs.write(path.basename(dir)+'.zip', data, 'wb')
+    return fs.write(path.basename(dir)+'.zip', data, 'wb').then(function() {
+      return files
+    })
   })
 }
 
@@ -40,8 +45,8 @@ var init = function() {
   var dir = process.argv[2]
 
   return createArchive(dir)
-    .then(function() {
-      console.log('Created '+dir+'.zip')
+    .then(function(files) {
+      console.log('Created '+dir+'.zip, with '+ files.length+' files.')
     })
     .catch(function(err) {
       console.error(err)
