@@ -80,9 +80,6 @@ var init = function() {
     console.log(dirs.length + " exercises fetched and saved to /"+details.target)
     return details.target
   })
-  .catch(function(err) {
-    console.error(err)
-  })
 
   if(archive) {
     p.then(function(dir) {
@@ -92,6 +89,10 @@ var init = function() {
       })
     })
   }
+
+  p.catch(function(err) {
+    console.error(err)
+  })
 }
 
 // Detect if we're being called directly or require()'d
