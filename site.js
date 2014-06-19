@@ -11,27 +11,29 @@ GitHub = {
   readme: "README.md",
   token: "ce7c5b2150374a20aeeaa799867d0d50ae638d28",
 
-  // GET url
+  Helpers: {
 
-  get: function(url) {
-    return $.ajax({
-      url: url,
-      data: {
-        access_token: this.token
-      },
-      dataType: 'jsonp'
-    });
-  },
+    // GET url
+    get: function(url) {
+      return $.ajax({
+        url: url,
+        data: {
+          access_token: GitHub.token
+        },
+        dataType: 'jsonp'
+      });
+    },
 
-  // Helper function for content paths
-  buildURL: function(path) {
-    return this.url+"/repos/"+ this.owner +"/"+ this.repo +"/contents"+path
+    // Helper function for content paths
+    buildURL: function(path) {
+      return GitHub.url+"/repos/"+ GitHub.owner +"/"+ GitHub.repo +"/contents"+path
+    }
   },
 
   // GET /exercises
 
   getExercises: function() {
-    return this.get(this.buildURL("/exercises")).then(function(res) {
+    return this.Helpers.get(this.Helpers.buildURL("/exercises")).then(function(res) {
       return res.data.map(function(exercise) {
         return exercise.name
       })
@@ -41,7 +43,7 @@ GitHub = {
   // GET /exercises/:exercise/README.md
 
   getReadmeForExercise: function(exercise) {
-    return this.get(this.buildURL("/exercises/"+ exercise +"/"+this.readme))
+    return this.Helpers.get(this.Helpers.buildURL("/exercises/"+ exercise +"/"+this.readme))
   }
 }
 
@@ -51,6 +53,15 @@ var base64ToUTF8 = function(str) {
   return decodeURIComponent(escape(window.atob(str)))
 }
 
+// Micro templating
+
+var template = function(string, data) {
+  for(var s in data) {
+    string = string.replace(new RegExp('{'+s+'}', 'g'), data[s])
+  }
+  return string
+}
+
 // Build the list from an exercises object array
 var buildReadmeList = function(exercises) {
   var $container = $(".exercises-list"),
@@ -58,13 +69,18 @@ var buildReadmeList = function(exercises) {
 
   exercises.forEach(function(exercise, i) {
     var content = marked(base64ToUTF8(exercise.data.content))
+    var data = {
+          order: i,
+          text: $(content).eq(0).text(),
+          content: content
+        }
 
-    var el = '<li>'+
-      '<a data-toggle="collapse" id="t'+i+'" data-parent="#accordion" href="#doc'+i+'">'+ $(content).eq(0).text() +'</a>'+
-      '<section id="doc'+i+'" class="doc collapse">'+ content +'</section>'+
+    var tmpl = '<li>'+
+      '<a data-toggle="collapse" id="t{order}" data-parent="#accordion" href="#doc{order}">{text}</a>'+
+      '<section id="doc{order}" class="doc collapse">{content}</section>'+
     '</li>'
 
-    els.push(el)
+    els.push(template(tmpl, data))
   })
 
   $container.html(els)
