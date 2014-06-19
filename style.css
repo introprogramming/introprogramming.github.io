@@ -181,6 +181,19 @@ small {
   list-style: none;
   margin: 0;
   padding: 0; }
+  .exercises-list .exercise-level {
+    text-indent: -999em;
+    border-radius: 100%;
+    display: inline-block;
+    background-color: #ddd;
+    width: 8px;
+    height: 8px; }
+    .exercises-list .exercise-level.level-1 {
+      background-color: #A0D945; }
+    .exercises-list .exercise-level.level-2 {
+      background-color: #FAB02F; }
+    .exercises-list .exercise-level.level-3 {
+      background-color: #FF4B14; }
   .exercises-list [data-toggle='collapse'] {
     font-family: Monaco, Menlo, Courier, monospace;
     font-size: 13px;
@@ -192,6 +205,10 @@ small {
     padding: 0.6em 0;
     position: relative;
     transition: border-color 0.1s ease; }
+    .exercises-list [data-toggle='collapse'] .exercise-level {
+      position: absolute;
+      right: 50px;
+      top: 1.2em; }
     .exercises-list [data-toggle='collapse']:hover, .exercises-list [data-toggle='collapse']:not(.collapsed) {
       color: #762ec3; }
       .exercises-list [data-toggle='collapse']:hover::after, .exercises-list [data-toggle='collapse']:not(.collapsed)::after {
@@ -201,7 +218,7 @@ small {
       display: inline-block;
       position: absolute;
       top: 0.5em;
-      right: 1em;
+      right: 10px;
       color: #999; }
   .exercises-list > li:hover > [data-toggle="collapse"], .exercises-list > li:hover + li > [data-toggle="collapse"] {
     border-top-color: #7846AB; }

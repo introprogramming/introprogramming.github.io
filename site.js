@@ -62,21 +62,29 @@ var template = function(string, data) {
   return string
 }
 
+var extractLevel = function(content) {
+  var matches = content.match(/Svårighetsgrad: ?(\d)/i)
+  return matches ? matches[1] : false
+}
+
 // Build the list from an exercises object array
 var buildReadmeList = function(exercises) {
   var $container = $(".exercises-list"),
       els = []
 
   exercises.forEach(function(exercise, i) {
-    var content = marked(base64ToUTF8(exercise.data.content))
-    var data = {
+    var raw = base64ToUTF8(exercise.data.content),
+        content = marked(raw),
+
+        data = {
           order: i,
+          level: extractLevel(raw) || 'Okänd',
           text: $(content).eq(0).text(),
           content: content
         }
 
     var tmpl = '<li>'+
-      '<a data-toggle="collapse" id="t{order}" data-parent="#accordion" href="#doc{order}">{text}</a>'+
+      '<a data-toggle="collapse" id="t{order}" data-parent="#accordion" href="#doc{order}">{text} <strong class="exercise-level level-{level}" title="Svårighetsgrad {level}">Svårighetsgrad {level}</strong></a>'+
       '<section id="doc{order}" class="doc collapse">{content}</section>'+
     '</li>'
 

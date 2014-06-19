@@ -265,6 +265,27 @@ small {
 
   $border: 2px solid lighten($light, 30%);
 
+  .exercise-level {
+    $dim: 8px;
+
+    text-indent: -999em;
+    border-radius: 100%;
+    display: inline-block;
+    background-color: #ddd;
+    width: $dim;
+    height: $dim;
+
+    &.level-1 {
+      background-color: #A0D945;
+    }
+    &.level-2 {
+      background-color: #FAB02F;
+    }
+    &.level-3 {
+      background-color: #FF4B14;
+    }
+  }
+
   [data-toggle='collapse'] {
     font-family: Monaco, Menlo, Courier, monospace;
     font-size: 13px;
@@ -276,6 +297,12 @@ small {
     padding: .6em 0;
     position: relative;
     transition: border-color .1s ease;
+
+    .exercise-level {
+      position: absolute;
+      right: 50px;
+      top: 1.2em;
+    }
 
     &:hover,
     &:not(.collapsed) {
@@ -291,7 +318,7 @@ small {
       display: inline-block;
       position: absolute;
       top: .5em;
-      right: 1em;
+      right: 10px;
       color: $gray;
     }
   }
