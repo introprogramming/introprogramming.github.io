@@ -162,8 +162,8 @@ small {
   max-width: 42em; }
 
 [role="navigation"] .active a, [role="navigation"] .active a:hover {
-  color: #563d7c;
-  border-left: 2px solid #563d7c;
+  color: #7846AB;
+  border-left: 2px solid #7846AB;
   padding-left: 19px;
   font-weight: 600; }
 [role="navigation"] a {
@@ -183,7 +183,7 @@ small {
   padding: 0; }
   .exercises-list [data-toggle='collapse'] {
     font-weight: 600;
-    color: #563d7c;
+    color: #7846AB;
     border: 0;
     border-top: 2px solid #dcdbce;
     display: block;
@@ -191,7 +191,7 @@ small {
     position: relative;
     transition: border-color 0.1s ease; }
     .exercises-list [data-toggle='collapse']:hover::after {
-      color: #563d7c; }
+      color: #7846AB; }
     .exercises-list [data-toggle='collapse']::after {
       content: "+";
       display: inline-block;
@@ -200,7 +200,7 @@ small {
       right: 1em;
       color: #999; }
   .exercises-list > li:hover > [data-toggle="collapse"], .exercises-list > li:hover + li > [data-toggle="collapse"] {
-    border-top-color: #563d7c; }
+    border-top-color: #7846AB; }
   .exercises-list > li:last-child > [data-toggle='collapse'] {
     border-bottom: 2px solid #dcdbce; }
   .exercises-list .doc {
@@ -227,11 +227,11 @@ small {
   border-radius: 4px;
   text-align: center;
   background-color: #fff;
-  color: #8153cc;
+  color: #aa78df;
   font-weight: bold;
   -webkit-font-smoothing: antialiased;
   transition: color, border-color 0.2s ease-out;
-  border: 2px solid #8153cc; }
+  border: 2px solid #aa78df; }
   .btn:hover, .btn-download:hover, button:hover {
     border-width: 2px;
     border-color: #B845FF;
@@ -239,8 +239,8 @@ small {
   .btn:active, .btn-download:active, button:active {
     -webkit-transform: scale(0.95);
     transform: scale(0.95);
-    border-color: #563d7c;
+    border-color: #7846AB;
     border-width: 2px;
-    color: #563d7c;
-    background-color: rgba(86, 61, 124, 0.05); }
+    color: #7846AB;
+    background-color: rgba(120, 70, 171, 0.05); }
 
