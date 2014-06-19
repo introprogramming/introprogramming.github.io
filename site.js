@@ -63,7 +63,7 @@ var template = function(string, data) {
 }
 
 var extractLevel = function(content) {
-  var matches = content.match(/Svårighetsgrad: ?(\d)/i)
+  var matches = content.match(/Svårighetsgrad:? ?(\d)/i)
   return matches ? matches[1] : false
 }
 
