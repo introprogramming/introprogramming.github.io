@@ -182,16 +182,20 @@ small {
   margin: 0;
   padding: 0; }
   .exercises-list [data-toggle='collapse'] {
-    font-weight: 600;
-    color: #7846AB;
+    font-family: Monaco, Menlo, Courier, monospace;
+    font-size: 13px;
+    font-weight: normal;
+    color: #9064c0;
     border: 0;
     border-top: 2px solid #dcdbce;
     display: block;
     padding: 0.6em 0;
     position: relative;
     transition: border-color 0.1s ease; }
-    .exercises-list [data-toggle='collapse']:hover::after {
-      color: #7846AB; }
+    .exercises-list [data-toggle='collapse']:hover, .exercises-list [data-toggle='collapse']:not(.collapsed) {
+      color: #762ec3; }
+      .exercises-list [data-toggle='collapse']:hover::after, .exercises-list [data-toggle='collapse']:not(.collapsed)::after {
+        color: #7846AB; }
     .exercises-list [data-toggle='collapse']::after {
       content: "+";
       display: inline-block;

@@ -266,8 +266,10 @@ small {
   $border: 2px solid lighten($light, 30%);
 
   [data-toggle='collapse'] {
-    font-weight: 600;
-    color: $comp;
+    font-family: Monaco, Menlo, Courier, monospace;
+    font-size: 13px;
+    font-weight: normal;
+    color: lighten($comp, 10%);
     border: 0;
     border-top: $border;
     display: block;
@@ -275,8 +277,13 @@ small {
     position: relative;
     transition: border-color .1s ease;
 
-    &:hover::after {
-      color: $comp;
+    &:hover,
+    &:not(.collapsed) {
+      color: saturate($comp, 20%);
+
+      &::after {
+        color: $comp;
+      }
     }
 
     &::after {
