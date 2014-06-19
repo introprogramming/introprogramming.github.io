@@ -326,7 +326,8 @@ small {
 .btn,
 button {
   $color: saturate(lighten($comp, 20%), 20%);
-  $color-hover: $comp;
+  $color-hover: #B845FF;
+  $color-active: $comp;
 
   display: inline-block;
   -webkit-appearance: none;
@@ -340,19 +341,22 @@ button {
   color: $color;
   font-weight: bold;
   -webkit-font-smoothing: antialiased;
-  transition: background-color .1s ease-out;
+  transition: color, border-color .2s ease-out;
   border: 2px solid $color;
 
   &:hover {
-    border-color: $color-hover;
     border-width: 2px;
+    border-color: $color-hover;
     color: $color-hover;
-    background-color: rgba($color-hover, .05);
   }
 
   &:active {
     -webkit-transform: scale(.95);
     transform: scale(.95);
+    border-color: $color-active;
+    border-width: 2px;
+    color: $color-active;
+    background-color: rgba($color-active, .05);
   }
 }
 

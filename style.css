@@ -230,14 +230,17 @@ small {
   color: #8153cc;
   font-weight: bold;
   -webkit-font-smoothing: antialiased;
-  transition: background-color 0.1s ease-out;
+  transition: color, border-color 0.2s ease-out;
   border: 2px solid #8153cc; }
   .btn:hover, .btn-download:hover, button:hover {
+    border-width: 2px;
+    border-color: #B845FF;
+    color: #B845FF; }
+  .btn:active, .btn-download:active, button:active {
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
     border-color: #563d7c;
     border-width: 2px;
     color: #563d7c;
     background-color: rgba(86, 61, 124, 0.05); }
-  .btn:active, .btn-download:active, button:active {
-    -webkit-transform: scale(0.95);
-    transform: scale(0.95); }
 
