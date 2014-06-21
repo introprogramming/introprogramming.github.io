@@ -48,18 +48,22 @@ GitHub = {
 }
 
 // Convert base64 encoded string to UTF8
-
 var base64ToUTF8 = function(str) {
   return decodeURIComponent(escape(window.atob(str)))
 }
 
 // Micro templating
-
-var template = function(string, data) {
+var render = function(string, data) {
   for(var s in data) {
     string = string.replace(new RegExp('{'+s+'}', 'g'), data[s])
   }
   return string
+}
+
+// Create a template function bound to a
+// template string ready for rendering data
+var template = function(string) {
+  return render.bind(this, string)
 }
 
 var extractLevel = function(content) {
@@ -67,31 +71,34 @@ var extractLevel = function(content) {
   return matches ? matches[1] : false
 }
 
-// Build the list from an exercises object array
-var buildReadmeList = function(exercises) {
-  var $container = $(".exercises-list"),
-      els = []
+// Create a plain object for templating
+var transformExercise = function(exercise, i) {
+  var raw = base64ToUTF8(exercise.data.content),
+      content = marked(raw)
 
-  exercises.forEach(function(exercise, i) {
-    var raw = base64ToUTF8(exercise.data.content),
-        content = marked(raw),
+  return {
+    order: i,
+    level: extractLevel(raw) || 'Okänd',
+    text: $(content).eq(0).text(),
+    content: content
+  }
+}
 
-        data = {
-          order: i,
-          level: extractLevel(raw) || 'Okänd',
-          text: $(content).eq(0).text(),
-          content: content
-        }
-
-    var tmpl = '<li>'+
-      '<a data-toggle="collapse" id="t{order}" data-parent="#accordion" href="#doc{order}">{text} <strong class="exercise-level level-{level}" title="Svårighetsgrad {level}">Svårighetsgrad {level}</strong></a>'+
-      '<section id="doc{order}" class="doc collapse">{content}</section>'+
-    '</li>'
-
-    els.push(template(tmpl, data))
+var sortByLevel = function(exercises) {
+  return exercises.sort(function(e1, e2) {
+    return (e1.level > e2.level) ? 1 :
+      (e1.level < e2.level) ? -1 : 0
   })
+}
 
-  $container.html(els)
+// Build the list from an exercises object array
+var renderReadmeList = function(exercises) {
+  var $container = $(".exercises-list"),
+      tmpl = template($("#exercise-template").html())
+
+  // Render each exercise with 'tmpl', whose only argument
+  // is a data object (given in Array.map).
+  return $container.html( exercises.map(tmpl).join("") )
 }
 
 // Fetch READMEs and build list
@@ -114,7 +121,11 @@ var fetchReadmeas = function() {
         })
       })
     })
-    .then(buildReadmeList)
+    .then(function(exercises) {
+      return exercises.map(transformExercise)
+    })
+    .then(sortByLevel)
+    .then(renderReadmeList)
 
 }
 
