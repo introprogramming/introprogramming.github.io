@@ -55,7 +55,8 @@ pre {
   border-radius: 3px;
   border: 1px solid #ddd;
   padding: 1em;
-  font-size: 0.9em; }
+  font-size: 0.9em;
+  margin: 0 0 1.5em; }
 
 pre code {
   border: 0;
@@ -94,6 +95,19 @@ a {
 
 p {
   margin: 0 0 1.5em; }
+
+blockquote {
+  margin: 0 2em 3em;
+  font-style: italic; }
+  blockquote a {
+    color: #444;
+    transition: color 0.15s ease-in-out; }
+  blockquote:hover a {
+    color: #2F8EED; }
+  blockquote > p {
+    color: #7846AB;
+    font-size: 1.2em;
+    line-height: 1.7; }
 
 [role="contentinfo"] {
   margin: 4.5em 0;

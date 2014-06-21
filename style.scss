@@ -13,6 +13,8 @@ $light:    #9C9975;
 $gray:     #999;
 $comp:     #7846AB;
 
+$text-color: #444;
+
 $leading:  1.5em;
 
 * {
@@ -24,7 +26,7 @@ $leading:  1.5em;
 html {
   background: #fff url('images/ribbon.png') repeat-x -25% -4px;
   font: 1em/#{$leading} "Open Sans", sans-serif;
-  color: #444;
+  color: $text-color;
 }
 
 body {
@@ -78,6 +80,7 @@ pre {
   border: 1px solid #ddd;
   padding: 1em;
   font-size: .9em;
+  margin: 0 0 $leading;
 }
 
 pre code {
@@ -127,6 +130,26 @@ a {
 
 p {
   margin: 0 0 $leading;
+}
+
+blockquote {
+  margin: 0 2em $leading*2;
+  font-style: italic;
+
+  a {
+    color: $text-color;
+    transition: color .15s ease-in-out;
+  }
+
+  &:hover a {
+    color: $accent;
+  }
+
+  & > p {
+    color: $comp;
+    font-size: 1.2em;
+    line-height: 1.7;
+  }
 }
 
 [role="contentinfo"] {

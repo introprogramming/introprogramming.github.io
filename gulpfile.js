@@ -24,5 +24,6 @@ gulp.task('watch', function() {
   gulp.src('*.scss')
     .pipe(watch())
     .pipe(sass())
+    .on('error', gutil.log)
     .pipe(gulp.dest('./'))
 })
