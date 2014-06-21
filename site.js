@@ -1,52 +1,5 @@
 ;(function() {
 
-/*
-  Main GitHub API wrapper
-*/
-GitHub = {
-  // Details ..
-  url: "https://api.github.com",
-  owner: "introprogramming",
-  repo: "exercises",
-  readme: "README.md",
-  token: "ce7c5b2150374a20aeeaa799867d0d50ae638d28",
-
-  Helpers: {
-
-    // GET url
-    get: function(url) {
-      return $.ajax({
-        url: url,
-        data: {
-          access_token: GitHub.token
-        },
-        dataType: 'jsonp'
-      });
-    },
-
-    // Helper function for content paths
-    buildURL: function(path) {
-      return GitHub.url+"/repos/"+ GitHub.owner +"/"+ GitHub.repo +"/contents"+path
-    }
-  },
-
-  // GET /exercises
-
-  getExercises: function() {
-    return this.Helpers.get(this.Helpers.buildURL("/exercises")).then(function(res) {
-      return res.data.map(function(exercise) {
-        return exercise.name
-      })
-    })
-  },
-
-  // GET /exercises/:exercise/README.md
-
-  getReadmeForExercise: function(exercise) {
-    return this.Helpers.get(this.Helpers.buildURL("/exercises/"+ exercise +"/"+this.readme))
-  }
-}
-
 // Convert base64 encoded string to UTF8
 var base64ToUTF8 = function(str) {
   return decodeURIComponent(escape(window.atob(str)))
@@ -67,6 +20,57 @@ var render = function(string, data) {
 //        => 'Hi Johan'
 var template = function(string) {
   return render.bind(this, string)
+}
+
+/*
+  Main GitHub API wrapper
+*/
+GitHub = {
+  // Details ..
+  details: {
+    url: "https://api.github.com",
+    owner: "introprogramming",
+    repo: "exercises"
+  },
+  readme: "README.md",
+  token: "ce7c5b2150374a20aeeaa799867d0d50ae638d28",
+  _base: function() {
+    return render("{url}/repos/{owner}/{repo}/contents", this.details)
+  },
+
+  Helpers: {
+
+    path: function(path) {
+      return GitHub._base() + path
+    },
+
+    // GET url
+    get: function(url) {
+      return $.ajax({
+        url: url,
+        data: {
+          access_token: GitHub.token
+        },
+        dataType: 'jsonp'
+      });
+    }
+  },
+
+  // GET /exercises
+
+  getExercises: function() {
+    return this.Helpers.get(this.Helpers.path("/exercises")).then(function(res) {
+      return res.data.map(function(exercise) {
+        return exercise.name
+      })
+    })
+  },
+
+  // GET /exercises/:exercise/README.md
+
+  getReadmeForExercise: function(exercise) {
+    return this.Helpers.get(this.Helpers.path("/exercises/"+ exercise +"/"+this.readme))
+  }
 }
 
 // Matches:
