@@ -64,7 +64,6 @@ var template = function(string, data) {
 
 var extractLevel = function(content) {
   var matches = content.match(/Svårighetsgrad[\W\s]*(\d)/i)
-  console.log(matches)
   return matches ? matches[1] : false
 }
 
