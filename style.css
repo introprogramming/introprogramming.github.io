@@ -85,6 +85,9 @@ blockquote {
     color: #7846AB;
     font-size: 1.2em;
     line-height: 1.7; }
+  blockquote footer cite::before {
+    content: "\2014";
+    padding-right: 5px; }
 
 [role="contentinfo"] {
   margin: 4.5em 0;

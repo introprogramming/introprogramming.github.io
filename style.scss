@@ -123,6 +123,14 @@ blockquote {
     font-size: 1.2em;
     line-height: 1.7;
   }
+
+  footer cite {
+
+    &::before {
+      content: "\2014";
+      padding-right: 5px;
+    }
+  }
 }
 
 [role="contentinfo"] {
