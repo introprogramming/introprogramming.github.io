@@ -3,7 +3,9 @@
   <head>
     <title>Introkurs i Programmering</title>
     <meta charset="utf-8" />
-    <link href='http://fonts.googleapis.com/css?family=Pacifico|Open+Sans:400italic,400,600,600italic,300,300italic,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700|Pacifico|Open+Sans:400italic,400,600,600italic,300,300italic,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/atelier-forest.light.min.css" />
     <link rel="stylesheet" href="style.css" />
 
     <meta name="description" content="Introduktionskurs i programmering i Python för Chalmers och Göteborgs Universitet" />
@@ -53,8 +55,7 @@
 
           <pre><code># This is some code
 def func(input):
-   print "Hello!"</code>
-          </pre>
+  print "Hello!"</code></pre>
         </section>
 
         <section>
@@ -87,9 +88,14 @@ def func(input):
     </script>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="vendor/highlight.pack.js"></script>
     <script src="vendor/bootstrap.min.js"></script>
     <script src="vendor/smooth-scroll.js"></script>
     <script src="vendor/marked.min.js"></script>
     <script src="site.js"></script>
+    <script>
+      hljs.configure({tabReplace: '    '})
+      hljs.initHighlightingOnLoad()
+    </script>
   </body>
 </html>

@@ -41,29 +41,6 @@ h2 {
 .subhead {
   font-size: 1.2em; }
 
-pre, code {
-  font-family: "Courier", monospace; }
-
-code {
-  background-color: #f7f7f7;
-  padding: 3px 4px;
-  border: 1px solid #ccc;
-  border-radius: 3px; }
-
-pre {
-  background-color: #f9f9f9;
-  border-radius: 3px;
-  border: 1px solid #ddd;
-  padding: 1em;
-  font-size: 0.9em;
-  margin: 0 0 1.5em; }
-
-pre code {
-  border: 0;
-  background-color: transparent;
-  border-radius: 0;
-  padding: 0; }
-
 a {
   color: #2F8EED;
   font-weight: 600;
@@ -279,3 +256,29 @@ small {
     color: #7846AB;
     background-color: rgba(120, 70, 171, 0.05); }
 
+
+/* Override Highlight.js styles
+--------------------------------------------- */
+pre, code {
+  font-family: Inconsolata, Monaco, Courier, monospace; }
+
+code {
+  background-color: #f7f7f7;
+  padding: 3px 4px;
+  border: 1px solid #ccc;
+  border-radius: 3px; }
+
+pre {
+  background-color: #fdfdfd;
+  box-shadow: inset rgba(0, 0, 0, 0.1) 0 1px 2px, rgba(0, 0, 0, 0.03) 0 0 0 3px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  padding: 1em;
+  font-size: 1.1em;
+  margin: 3em 2em; }
+
+pre code, .hljs {
+  border: 0;
+  background: none;
+  border-radius: 0;
+  padding: 0; }
