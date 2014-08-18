@@ -13,9 +13,9 @@ Made by Johan Brook.
   box-sizing: border-box; }
 
 html {
-  background: #fff url('images/ribbon.png') repeat-x -25% -4px;
+  background: white url("images/ribbon.png") repeat-x -25% -4px;
   font: 1em/1.5em "Open Sans", sans-serif;
-  color: #444; }
+  color: #444444; }
 
 body {
   margin: 0 5%;
@@ -51,12 +51,26 @@ h3, dt {
   font-size: 1.2em; }
 
 a {
-  color: #2F8EED;
+  color: #2f8eed;
   font-weight: 600;
   text-decoration: none; }
   a:hover {
     text-decoration: none;
-    border-bottom: 1px solid #2F8EED; }
+    border-bottom: 1px solid #2f8eed; }
+
+/* Niklas was here */
+.pgm-bordered {
+  border: 2px;
+  border-style: solid; }
+
+.dv {
+  border-color: #d00000; }
+
+.d {
+  border-color: #ff9900; }
+
+.it {
+  border-color: #90deff; }
 
 [role="banner"] {
   padding: 3em 0 3em;
@@ -73,8 +87,8 @@ a {
       display: block;
       font-size: 15px;
       text-transform: uppercase;
-      letter-spacing: 0.3em;
-      color: #9C9975;
+      letter-spacing: .3em;
+      color: #9c9975;
       position: relative;
       margin-left: 4em;
       top: 1em; }
@@ -89,12 +103,12 @@ blockquote {
   margin: 0 2em 3em;
   font-style: italic; }
   blockquote a {
-    color: #444;
-    transition: color 0.15s ease-in-out; }
+    color: #444444;
+    transition: color .15s ease-in-out; }
   blockquote:hover a {
-    color: #2F8EED; }
+    color: #2f8eed; }
   blockquote > p {
-    color: #7846AB;
+    color: #7846ab;
     font-size: 1.2em;
     line-height: 1.7; }
   blockquote footer cite::before {
@@ -103,8 +117,8 @@ blockquote {
 
 [role="contentinfo"] {
   margin: 4.5em 0;
-  font-size: 0.8em;
-  color: #999;
+  font-size: .8em;
+  color: #999999;
   display: table; }
   [role="contentinfo"] > p {
     display: table-cell;
@@ -124,7 +138,7 @@ blockquote {
     margin-right: 2em; }
     [role="contentinfo"] .schools a:hover {
       border: 0;
-      opacity: 0.8; }
+      opacity: .8; }
 
 nav ul {
   list-style: none;
@@ -132,8 +146,8 @@ nav ul {
   padding: 0; }
 
 small {
-  font-size: 0.7em;
-  color: #999; }
+  font-size: .7em;
+  color: #999999; }
 
 .affix, .affix-top {
   right: 5%; }
@@ -159,9 +173,9 @@ small {
     margin-bottom: 1.5em; }
     .scrollspy .download small a {
       color: #aaa;
-      transition: color 0.2s; }
+      transition: color .2s; }
   .scrollspy:hover .download small a {
-    color: #2F8EED; }
+    color: #2f8eed; }
 
 [role="main"] {
   width: 66%;
@@ -177,15 +191,15 @@ small {
       background-color: #ddd; }
 
 [role="navigation"] .active a, [role="navigation"] .active a:hover {
-  color: #7846AB;
-  border-left: 2px solid #7846AB;
+  color: #7846ab;
+  border-left: 2px solid #7846ab;
   padding-left: 19px;
   font-weight: 600; }
 [role="navigation"] a {
   font-weight: normal;
-  color: #999;
+  color: #999999;
   display: block;
-  padding: 0.3em 20px;
+  padding: .3em 20px;
   border-left: 1px solid transparent; }
   [role="navigation"] a:hover {
     border: 0;
@@ -213,30 +227,30 @@ small {
     font-family: Monaco, Menlo, Courier, monospace;
     font-size: 13px;
     font-weight: normal;
-    color: #9064c0;
+    color: #9264c0;
     border: 0;
     border-top: 2px solid #dcdbce;
     display: block;
-    padding: 0.6em 0;
+    padding: .6em 0;
     position: relative;
-    transition: border-color 0.1s ease; }
+    transition: border-color .1s ease; }
     .exercises-list [data-toggle='collapse'] .exercise-level {
       position: absolute;
       right: 50px;
       top: 1.2em; }
     .exercises-list [data-toggle='collapse']:hover, .exercises-list [data-toggle='collapse']:not(.collapsed) {
-      color: #762ec3; }
+      color: #782ec3; }
       .exercises-list [data-toggle='collapse']:hover::after, .exercises-list [data-toggle='collapse']:not(.collapsed)::after {
-        color: #7846AB; }
+        color: #7846ab; }
     .exercises-list [data-toggle='collapse']::after {
       content: "+";
       display: inline-block;
       position: absolute;
-      top: 0.5em;
+      top: .5em;
       right: 10px;
-      color: #999; }
+      color: #999999; }
   .exercises-list > li:hover > [data-toggle="collapse"], .exercises-list > li:hover + li > [data-toggle="collapse"] {
-    border-top-color: #7846AB; }
+    border-top-color: #7846ab; }
   .exercises-list > li:last-child > [data-toggle='collapse'] {
     border-bottom: 2px solid #dcdbce; }
   .exercises-list .doc {
@@ -251,35 +265,37 @@ small {
   height: 0;
   position: relative;
   overflow: hidden;
-  transition: height 0.35s ease; }
+  transition: height .35s ease; }
 
 /* =BUTTONS
 --------------------------------------------- */
-.btn, .btn-download, button {
+.btn, .btn-download,
+button {
   display: inline-block;
   -webkit-appearance: none;
   position: relative;
-  padding: 0.6em 1em;
+  padding: .6em 1em;
   border-radius: 4px;
   text-align: center;
   background-color: #fff;
-  color: #aa78df;
+  color: #ab78df;
   font-weight: bold;
   -webkit-font-smoothing: antialiased;
-  transition: color, border-color 0.2s ease-out;
-  border: 2px solid #aa78df; }
-  .btn:hover, .btn-download:hover, button:hover {
+  transition: color, border-color .2s ease-out;
+  border: 2px solid #ab78df; }
+  .btn:hover, .btn-download:hover,
+  button:hover {
     border-width: 2px;
-    border-color: #B845FF;
-    color: #B845FF; }
-  .btn:active, .btn-download:active, button:active {
+    border-color: #b845ff;
+    color: #b845ff; }
+  .btn:active, .btn-download:active,
+  button:active {
     -webkit-transform: scale(0.95);
     transform: scale(0.95);
-    border-color: #7846AB;
+    border-color: #7846ab;
     border-width: 2px;
-    color: #7846AB;
+    color: #7846ab;
     background-color: rgba(120, 70, 171, 0.05); }
-
 
 /* Override Highlight.js styles
 --------------------------------------------- */
@@ -301,7 +317,8 @@ pre {
   font-size: 1.1em;
   margin: 3em 2em; }
 
-pre code, .hljs {
+pre code,
+.hljs {
   border: 0;
   background: none;
   border-radius: 0;

@@ -8,6 +8,10 @@ Made by Johan Brook.
 
 --------------------------------------------------------------- */
 
+$dv-red:   #D00000;
+$d-orange: #FF9900;
+$it-cyan:  #90DEFF;
+
 $accent:   #2F8EED;
 $light:    #9C9975;
 $gray:     #999;
@@ -84,6 +88,25 @@ a {
     text-decoration: none;
     border-bottom: 1px solid $accent;
   }
+}
+
+/* Niklas was here */
+
+.pgm-bordered {
+    border: 2px;
+    border-style: solid;
+}
+
+.dv {
+    border-color: $dv-red;
+}
+
+.d {
+    border-color: $d-orange;
+}
+
+.it {
+    border-color: $it-cyan;
 }
 
 [role="banner"] {
