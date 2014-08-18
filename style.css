@@ -153,7 +153,16 @@ small {
 
 [role="main"] {
   width: 66%;
-  max-width: 42em; }
+  max-width: 38em; }
+  [role="main"] > section {
+    margin-bottom: 3em; }
+    [role="main"] > section:not(:last-child)::after {
+      content: "";
+      display: block;
+      margin: 3em 0;
+      width: 30%;
+      height: 1px;
+      background-color: #ddd; }
 
 [role="navigation"] .active a, [role="navigation"] .active a:hover {
   color: #7846AB;
