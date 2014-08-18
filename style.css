@@ -61,7 +61,10 @@ a {
 /* Niklas was here */
 .pgm-bordered {
   border-width: 2px;
-  border-style: solid; }
+  border-style: solid;
+  padding: 5px; }
+  .pgm-bordered ~ .pgm-bordered {
+    margin-bottom: 5px; }
 
 .dv {
   border-color: #d00000; }

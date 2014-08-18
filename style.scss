@@ -95,6 +95,11 @@ a {
 .pgm-bordered {
     border-width: 2px;
     border-style: solid;
+    padding: 5px;
+
+    & ~ .pgm-bordered {
+	margin-bottom: 5px;
+    }
 }
 
 .dv {
