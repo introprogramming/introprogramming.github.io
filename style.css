@@ -58,22 +58,23 @@ a {
     text-decoration: none;
     border-bottom: 1px solid #2F8EED; }
 
-/* Niklas was here */
-.pgm-bordered {
-  border-width: 5px;
-  border-style: solid;
-  padding: 5px; }
-  .pgm-bordered + .pgm-bordered {
-    margin-top: 5px; }
-
-.dv {
-  border-color: #D00000; }
-
-.d {
-  border-color: #FF9900; }
-
-.it {
-  border-color: #90DEFF; }
+#schedule-accordion section {
+  margin-top: 1.6em; }
+#schedule-accordion .schedule-link {
+  display: block;
+  padding: 0.5em;
+  border: 0;
+  border-radius: 3px; }
+  #schedule-accordion .schedule-link:not(:last-of-type) {
+    border-bottom: 1px solid #ddd; }
+  #schedule-accordion .schedule-link:hover, #schedule-accordion .schedule-link:not(.collapsed) {
+    color: #fff; }
+  #schedule-accordion .schedule-link.it:hover, #schedule-accordion .schedule-link.it:not(.collapsed) {
+    background-color: #5dd1ff; }
+  #schedule-accordion .schedule-link.d:hover, #schedule-accordion .schedule-link.d:not(.collapsed) {
+    background-color: #FF9900; }
+  #schedule-accordion .schedule-link.gu:hover, #schedule-accordion .schedule-link.gu:not(.collapsed) {
+    background-color: #D00000; }
 
 [role="banner"] {
   padding: 3.2em 0 3.2em;

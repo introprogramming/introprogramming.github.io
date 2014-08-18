@@ -91,28 +91,39 @@ a {
   }
 }
 
-/* Niklas was here */
+#schedule-accordion {
+  section {
+    margin-top: $leading;
+  }
 
-.pgm-bordered {
-    border-width: 5px;
-    border-style: solid;
-    padding: 5px;
+  .schedule-link {
+    display: block;
+    padding: .5em;
+    border: 0;
+    border-radius: 3px;
 
-    & + .pgm-bordered {
-	margin-top: 5px;
+    &:not(:last-of-type) {
+      border-bottom: 1px solid #ddd;
     }
-}
 
-.dv {
-    border-color: $dv-red;
-}
+    &:hover,
+    &:not(.collapsed) {
+      color: #fff;
+    }
 
-.d {
-    border-color: $d-orange;
-}
-
-.it {
-    border-color: $it-cyan;
+    &.it:hover,
+    &.it:not(.collapsed) {
+      background-color: darken($it-cyan, 10%);
+    }
+    &.d:hover,
+    &.d:not(.collapsed) {
+      background-color: $d-orange;
+    }
+    &.gu:hover,
+    &.gu:not(.collapsed) {
+      background-color: $dv-red;
+    }
+  }
 }
 
 [role="banner"] {
