@@ -14,7 +14,7 @@ Made by Johan Brook.
 
 html {
   background: #fff url('images/ribbon.png') repeat-x -25% -4px;
-  font: 1em/1.5em "Open Sans", sans-serif;
+  font: 0.9375em/1.6em "Open Sans", sans-serif;
   color: #444; }
 
 body {
@@ -26,7 +26,7 @@ body {
 
 h1, h2, h3, dt, h4, h5, h6 {
   -webkit-font-smoothing: antialiased;
-  margin: 0 0 0.75em; }
+  margin: 0 0 0.8em; }
 
 h1 {
   font-size: 2.4em;
@@ -38,14 +38,14 @@ h2 {
   font-style: italic;
   font-size: 1.5em; }
   p ~ h2, ol ~ h2, ul ~ h2 {
-    margin-top: 1.5em; }
+    margin-top: 1.6em; }
 
 h3, dt {
   font-weight: bold;
   text-transform: uppercase;
   font-size: 1em; }
   h2 ~ h3, h2 ~ dt {
-    margin-top: 1.5em; }
+    margin-top: 1.6em; }
 
 .subhead {
   font-size: 1.2em; }
@@ -59,8 +59,8 @@ a {
     border-bottom: 1px solid #2F8EED; }
 
 [role="banner"] {
-  padding: 3em 0 3em;
-  margin-bottom: 1.5em; }
+  padding: 3.2em 0 3.2em;
+  margin-bottom: 1.6em; }
   [role="banner"] h1 {
     font-family: Pacifico, "Open Sans", sans-serif;
     font-weight: normal;
@@ -80,13 +80,13 @@ a {
       top: 1em; }
 
 p {
-  margin: 0 0 1.5em; }
+  margin: 0 0 1.6em; }
 
 dt {
-  margin-top: 1.5em; }
+  margin-top: 1.6em; }
 
 blockquote {
-  margin: 0 2em 3em;
+  margin: 0 2em 3.2em;
   font-style: italic; }
   blockquote a {
     color: #444;
@@ -102,7 +102,7 @@ blockquote {
     padding-right: 5px; }
 
 [role="contentinfo"] {
-  margin: 4.5em 0;
+  margin: 4.8em 0;
   font-size: 0.8em;
   color: #999;
   display: table; }
@@ -151,12 +151,12 @@ small {
   .scrollspy nav {
     margin-left: -20px; }
   .scrollspy p {
-    margin: 0 0 0.5em; }
+    margin: 0 0 0.53333em; }
   .scrollspy .btn-download {
     width: 100%; }
   .scrollspy .download {
     text-align: center;
-    margin-bottom: 1.5em; }
+    margin-bottom: 1.6em; }
     .scrollspy .download small a {
       color: #aaa;
       transition: color 0.2s; }
@@ -167,11 +167,11 @@ small {
   width: 66%;
   max-width: 38em; }
   [role="main"] > section {
-    margin-bottom: 3em; }
+    margin-bottom: 3.2em; }
     [role="main"] > section:not(:last-child)::after {
       content: "";
       display: block;
-      margin: 3em 0;
+      margin: 3.2em 0;
       width: 30%;
       height: 1px;
       background-color: #ddd; }
@@ -240,7 +240,7 @@ small {
   .exercises-list > li:last-child > [data-toggle='collapse'] {
     border-bottom: 2px solid #dcdbce; }
   .exercises-list .doc {
-    padding: 1.5em 0; }
+    padding: 1.6em 0; }
 
 .collapse {
   display: none; }
@@ -299,7 +299,7 @@ pre {
   border: 1px solid #ccc;
   padding: 1em;
   font-size: 1.1em;
-  margin: 3em 2em; }
+  margin: 3.2em 2em; }
 
 pre code, .hljs {
   border: 0;

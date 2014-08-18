@@ -15,7 +15,8 @@ $comp:     #7846AB;
 
 $text-color: #444;
 
-$leading:  1.5em;
+$font-size:   (15 / 16) * 1em;
+$leading:     1.6em;
 
 * {
   -moz-box-sizing: border-box;
@@ -25,7 +26,7 @@ $leading:  1.5em;
 
 html {
   background: #fff url('images/ribbon.png') repeat-x -25% -4px;
-  font: 1em/#{$leading} "Open Sans", sans-serif;
+  font: #{$font-size}/#{$leading} "Open Sans", sans-serif;
   color: $text-color;
 }
 
