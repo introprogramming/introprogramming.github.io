@@ -58,6 +58,23 @@ a {
     text-decoration: none;
     border-bottom: 1px solid #2F8EED; }
 
+/* Niklas was here */
+.pgm-bordered {
+  border-width: 5px;
+  border-style: solid;
+  padding: 5px; }
+  .pgm-bordered + .pgm-bordered {
+    margin-top: 5px; }
+
+.dv {
+  border-color: #D00000; }
+
+.d {
+  border-color: #FF9900; }
+
+.it {
+  border-color: #90DEFF; }
+
 [role="banner"] {
   padding: 3.2em 0 3.2em;
   margin-bottom: 1.6em; }
