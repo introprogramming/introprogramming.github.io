@@ -93,11 +93,11 @@ a {
 /* Niklas was here */
 
 .pgm-bordered {
-    border-width: 2px;
+    border-width: 5px;
     border-style: solid;
     padding: 5px;
 
-    & ~ .pgm-bordered {
+    & + .pgm-bordered {
 	margin-bottom: 5px;
     }
 }
