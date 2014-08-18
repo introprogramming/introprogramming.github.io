@@ -24,7 +24,7 @@ body {
 ::selection {
   background-color: rgba(156, 153, 117, 0.2); }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, dt, h4, h5, h6 {
   -webkit-font-smoothing: antialiased;
   margin: 0 0 0.75em; }
 
@@ -40,11 +40,11 @@ h2 {
   p ~ h2, ol ~ h2, ul ~ h2 {
     margin-top: 1.5em; }
 
-h3 {
+h3, dt {
   font-weight: bold;
   text-transform: uppercase;
   font-size: 1em; }
-  h2 ~ h3 {
+  h2 ~ h3, h2 ~ dt {
     margin-top: 1.5em; }
 
 .subhead {
@@ -81,6 +81,9 @@ a {
 
 p {
   margin: 0 0 1.5em; }
+
+dt {
+  margin-top: 1.5em; }
 
 blockquote {
   margin: 0 2em 3em;
