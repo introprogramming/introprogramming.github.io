@@ -55,8 +55,13 @@ a {
   font-weight: 600;
   text-decoration: none; }
   a:hover {
+    outline: 0;
     text-decoration: none;
     border-bottom: 1px solid #2F8EED; }
+  a:focus {
+    outline: 0;
+    display: inline-block;
+    transform: scale(1.05); }
 
 #schedule-accordion section {
   margin-top: 1.6em; }
