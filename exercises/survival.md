@@ -11,13 +11,14 @@ Tänk på att det inte är viktigt hur sprites:en (.png-bilderna) ser ut, rita d
 
 Ett användbart koncept i den här uppgiften är **polymorfism**. Detta kommer ni ha nytta av på update-metoden.
 
-- Svårighetsgrad 3
+- **Svårighetsgrad:** 3
 
-## Moment
+## Delmoment
+
 0. Skapa ett fönster och en update-loop som ritar om fönstret efter 1/60 sekunder. Varje iteration är en s.k. **frame**.
 1. Skapa en egen klass `GraphObject` som ärver `pygame.sprite.Sprite` Skapa en funktion update(self, time) som anropas i varje frame.
 2. Rita ut några objekt mha `g = pygame.sprite.Group()` och `g.draw(screen)`.
-2. Gör en klass för spelaren som ärver `GraphObject` och skapa ett objekt av denna som utgör spelaren. Skapa i denna klass en ny metod `update(self,time)` som även kallar på `GraphObject(self,time)`.
+2. Gör en klass för spelaren som ärver `GraphObject` och skapa ett objekt av denna som utgör spelaren. Skapa i denna klass en ny metod `update(self,time)` som även kallar på `GraphObject.update(self,time)`.
 3. I update-loopen: fånga upp indata genom `pygame.event.get()`. Låt spelaren flytta på sig när man använder pil-tangenterna. Avbryt loopen om `pygame.QUIT` eller Escape matas in.
 3. Flytta *kameran* då spelaren rör sig. Detta kan göras på flera sätt, exempelvis genom att man har en Board klass som håller koll på var kameran är. För att se att kameran faktiskt rör sig så är det lämpligt att rita ut några *stillastående* objekt också.
 4. Skapa en projektil-klass som ärver `GraphObject`. Då du klickar på Space eller vänster musknapp ska en projektil flyga iväg åt det hållet du har muspekaren.
@@ -33,6 +34,7 @@ Ett användbart koncept i den här uppgiften är **polymorfism**. Detta kommer n
 - Rita ut bakgrundsfigurer som blommor och gräs.
 - Räkna poäng under spelets gång, till exempel när man dödar monster. Man kan även räkna tiden som gått sedan spelets start. Skriv ut denna poäng vid game over.
 - Spela upp ljud då en spelare eller monster tar skada. Spela även upp ljud då en projektil skjuts iväg och spelet är slut.
+- Låt användaren kunna pausa spelet för att fortsätta senare.
 - Fixa något annat kul som ni vill lägga till :)
 
 ## Externa bibliotek

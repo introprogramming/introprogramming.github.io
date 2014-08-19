@@ -1,0 +1,24 @@
+<h1 id="adventure-game">Adventure game</h1>
+<p>Text-baserat äventyrsspel: Utforska en värld, plats för plats, och interagera med världen med hjälp av text-kommandon.</p>
+<h2 id="tips">Tips</h2>
+<p>Börja med en väldigt enkel värld, och se till att de grundläggande funktionerna är korrekta. Separera koden för att skapa världen (&quot;model&quot;) från koden som hanterar dessa funktioner (&quot;controller&quot;). En lämplig uppdelning kan vara att ha en fil för datamodellen, en separat fil för datan som använder sig av denna modell (den konkreta &quot;världen&quot;), samt en fil som styr själva spelet.</p>
+<p>Skapa gärna ett roligt äventyr, men ha i åtanke att det inte är på att utveckla spelets innehåll ni lär er, utan på dess olika funktioner.</p>
+<ul>
+<li><strong>Svårighetsgrad:</strong> 2</li>
+</ul>
+<h2 id="delmoment">Delmoment</h2>
+<ol>
+<li>Skapa en klass för platser i världen. Fundera över vilka attribut som utmärker en plats. Skapa ett par olika platser som objekt (i separat fil, se ovan).</li>
+<li>Skapa en funktion <code>move(direction)</code> som kan flytta spelaren mellan platser.</li>
+<li>Skapa en funktion <code>look</code> som beskriver nuvarande eller angränsande platser.</li>
+<li>Skapa en funktion som lyssnar på input från användaren, och agerar i enlighet med det kommando användaren angivit.</li>
+<li>Sätt ihop byggstenarna till ett spel.</li>
+</ol>
+<h2 id="utbyggnad">Utbyggnad</h2>
+<ul>
+<li>Introducera andra saker som är möjliga att göra än att bara titta och röra sig. <strong>Svårighetsgrad 2</strong></li>
+<li>Gör så att platser kan förändras baserat på vad spelaren gör. <strong>Svårighetsgrad 2</strong></li>
+<li>Introducera flyttbara saker (&quot;items&quot;) till spelet, och ge spelaren möjlighet att bära med sig (&quot;inventory&quot;) och använda dessa. <strong>Svårighetsgrad 2</strong></li>
+<li>Färgkoda utskrifterna för att göra spelet snyggare. <strong>Svårighetsgrad 2</strong></li>
+<li>Använd biblioteket pygame för att lägga till enkel grafik, med bilder som visas med all beskrivande text. <strong>Svårighetsgrad 2</strong></li>
+</ul>

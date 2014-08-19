@@ -1,6 +1,6 @@
 # Tetris
 
-## Svårighetsgrad: 3
+- **Svårighetsgrad:** 3
 
 ## Delmoment
 

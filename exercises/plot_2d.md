@@ -2,9 +2,10 @@
 
 Skriv en grafritare som kan rita en funktion `y = f(x)` i två dimensioner över ett givet intervall. Till exempel, rita `3*sin(x)-x` över `0<x<2pi`.
 
-- Svårighetsgrad: 3
+- **Svårighetsgrad:** 3
 
-## Moment
+## Delmoment
+
 1. Rita en linje i ett fönster med 640x480 pixlar mha `pygame.draw.line(...)`, dvs få grafiken att överhuvudtaget fungera. **Svårighetsgrad 2**.
 2. Antag ett koordinatsystem med y positivt uppåt och x positivt åt höger, dvs som man brukar rita dem i matten. Skapa en funktion för att omvandla en koordinat i detta system till en "pixel-position" i fönstret (dvs y positiv nedåt). Denna kan lätt kontrolleras mha att rita linjer enligt 1. Till exempel `[0,0]` -> `[0,480]`. **Svårighetsgrad 2**.
 3. I omvandlingsfunktionen: ta nu även hänsyn till skala - gör så att fönstret utgör området `0<x<10` och `0<y<10` snarare än `0<x<640` etc. Till exempel `[5,0]` -> `[320, 480]`. **Svårighetsgrad 2**.

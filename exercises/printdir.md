@@ -5,9 +5,9 @@ Skriv ett program som skriver ut vad en mapp innehåller och hur mycket plats va
 
 Detta kan till exempel göras rekursivt. Använd os.path för inbyggda hjälp-funktioner.
 
-- Svårighetsgrad: 1
+- **Svårighetsgrad:** 1
 
-##Moment
+## Delmoment
 
 1. Läs in en sökväg till en mapp (path). **Svårighetsgrad 1**
 2. Skriv ut vilka filer den innehåller och deras respektive storlek. **Svårighetsgrad 1**

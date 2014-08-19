@@ -1,9 +1,9 @@
 # Yatzy
 Det klassiska tärningsspelet Yatzy med 5 tärningar för `N` spelare.
 
-- Svårighetsgrad: 2
+- **Svårighetsgrad:** 2
 
-## Moment
+## Delmoment
 1. Skapa loop för spelarnas turer. **Svårighetsgrad 1**.
 2. Kasta `n` tärningar. **Svårighetsgrad 1**.
 3. Låt spelaren välja vilka tärningar som ska kastas om (kan max kasta om 2 ggr per tur). **Svårighetsgrad 2**.

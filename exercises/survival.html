@@ -6,14 +6,14 @@
 <p>Tänk på att det inte är viktigt hur sprites:en (.png-bilderna) ser ut, rita dem väldigt enkelt i Paint eller motsvarande och lägg istället tiden på att få allt att fungera. När spelet är färdigt kan ni leta efter snygga bilder.</p>
 <p>Ett användbart koncept i den här uppgiften är <strong>polymorfism</strong>. Detta kommer ni ha nytta av på update-metoden.</p>
 <ul>
-<li>Svårighetsgrad 3</li>
+<li><strong>Svårighetsgrad:</strong> 3</li>
 </ul>
-<h2 id="moment">Moment</h2>
+<h2 id="delmoment">Delmoment</h2>
 <ol>
 <li>Skapa ett fönster och en update-loop som ritar om fönstret efter 1/60 sekunder. Varje iteration är en s.k. <strong>frame</strong>.</li>
 <li>Skapa en egen klass <code>GraphObject</code> som ärver <code>pygame.sprite.Sprite</code> Skapa en funktion update(self, time) som anropas i varje frame.</li>
 <li>Rita ut några objekt mha <code>g = pygame.sprite.Group()</code> och <code>g.draw(screen)</code>.</li>
-<li>Gör en klass för spelaren som ärver <code>GraphObject</code> och skapa ett objekt av denna som utgör spelaren. Skapa i denna klass en ny metod <code>update(self,time)</code> som även kallar på <code>GraphObject(self,time)</code>.</li>
+<li>Gör en klass för spelaren som ärver <code>GraphObject</code> och skapa ett objekt av denna som utgör spelaren. Skapa i denna klass en ny metod <code>update(self,time)</code> som även kallar på <code>GraphObject.update(self,time)</code>.</li>
 <li>I update-loopen: fånga upp indata genom <code>pygame.event.get()</code>. Låt spelaren flytta på sig när man använder pil-tangenterna. Avbryt loopen om <code>pygame.QUIT</code> eller Escape matas in.</li>
 <li>Flytta <em>kameran</em> då spelaren rör sig. Detta kan göras på flera sätt, exempelvis genom att man har en Board klass som håller koll på var kameran är. För att se att kameran faktiskt rör sig så är det lämpligt att rita ut några <em>stillastående</em> objekt också.</li>
 <li>Skapa en projektil-klass som ärver <code>GraphObject</code>. Då du klickar på Space eller vänster musknapp ska en projektil flyga iväg åt det hållet du har muspekaren.</li>
@@ -30,6 +30,7 @@
 <li>Rita ut bakgrundsfigurer som blommor och gräs.</li>
 <li>Räkna poäng under spelets gång, till exempel när man dödar monster. Man kan även räkna tiden som gått sedan spelets start. Skriv ut denna poäng vid game over.</li>
 <li>Spela upp ljud då en spelare eller monster tar skada. Spela även upp ljud då en projektil skjuts iväg och spelet är slut.</li>
+<li>Låt användaren kunna pausa spelet för att fortsätta senare.</li>
 <li>Fixa något annat kul som ni vill lägga till :)</li>
 </ul>
 <h2 id="externa-bibliotek">Externa bibliotek</h2>
