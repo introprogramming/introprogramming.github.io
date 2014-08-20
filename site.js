@@ -2,7 +2,8 @@
 
 // Convert base64 encoded string to UTF8
 var base64ToUTF8 = function(str) {
-  return decodeURIComponent(escape(window.atob(str)))
+  str = str.replace(/\s/g, '')
+  return Base64.decode(str)
 }
 
 // Micro templating
