@@ -1,7 +1,7 @@
 <h1 id="chat">Chat</h1>
 <p>Enkel chat i terminalen mellan två (eller flera) datorer utan server.</p>
 <p><strong>Koncept</strong>: nätverk, trådar</p>
-<p><strong>Tips</strong>: Programmet testas som enklast lokalt på samma dator mellan två terminal-fönster. Som i exemplen kan man då använda<br><code>zmq_socket.connect(&quot;tcp://localhost:%s&quot; % port)</code><br>för att ansluta. Mellan olika datorer får man byta ut <code>localhost</code> mot datorns lokala IP-adress.</p>
+<p><strong>Tips</strong>: Programmet testas som enklast lokalt på samma dator mellan två terminal-fönster. Som i exemplen kan man då använda<br><code>zmq_socket.connect(&quot;tcp://localhost:%s&quot; % port)</code><br>för att ansluta. Mellan olika datorer får man byta ut <code>localhost</code> mot datorns lokala IP-adress.<br><strong>OBS!</strong> Det verkar inte fungera så bra mellan flera datorer på chalmers nätverk. Det fungerar dock fint mellan flera datorer i ett hemnätverk.</p>
 <ul>
 <li><strong>Svårighetsgrad:</strong> 3</li>
 </ul>

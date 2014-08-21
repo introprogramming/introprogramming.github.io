@@ -13,3 +13,4 @@ En applikation som tar ett tal som input, och skriver ut det första [fibonacci-
 
 - Låt användaren kunna ange input-talet som ett argument till programmet, exempelvis:  
 `python fibonacci.py 35`
+- Prova att generera talserien [rekursivt](http://interactivepython.org/courselib/static/pythonds/Recursion/recursionsimple.html) istället för iterativt. **Svårighetsgrad:** 2

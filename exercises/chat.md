@@ -6,7 +6,8 @@ Enkel chat i terminalen mellan två (eller flera) datorer utan server.
 
 **Tips**: Programmet testas som enklast lokalt på samma dator mellan två terminal-fönster. Som i exemplen kan man då använda  
 `zmq_socket.connect("tcp://localhost:%s" % port)`  
-för att ansluta. Mellan olika datorer får man byta ut `localhost` mot datorns lokala IP-adress.
+för att ansluta. Mellan olika datorer får man byta ut `localhost` mot datorns lokala IP-adress.  
+**OBS!** Det verkar inte fungera så bra mellan flera datorer på chalmers nätverk. Det fungerar dock fint mellan flera datorer i ett hemnätverk.
 
 - **Svårighetsgrad:** 3
 
