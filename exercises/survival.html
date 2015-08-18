@@ -1,21 +1,22 @@
 <h1 id="survival-game">Survival game</h1>
 <p>2d shooter spel: överlev mot monster så länge som möjligt. Du har vapen och (o)begränsad ammunition. Spelet kan givetvis anpassas så att det blir precis som man vill. Det här är tänkt att spelas med tangentbord och mus. Perspektivet är tänkt som rakt uppifrån.</p>
-<h2 id="tips">Tips</h2>
-<p><strong>OBS!</strong> Det här är en uppgift av den större och svårare typen. Börja otroligt enkelt först och få det att fungera. Bygg ut det fungerande programmet successivt tills det är så coolt som ni vill ha det.</p>
-<p>Exempel kan vara bra för att komma igång, bäst lär man sig dock genom att göra själv. Använd gärna <a href="http://programarcadegames.com/index.php?chapter=introduction_to_sprites">detta</a> exempel som utgångspunkt. Ni kan även se andra exempel <a href="http://www.pygame.org/docs/tut/intro/intro.html">online</a> eller i Pygame mappen: <code>C:\Python27\Lib\site-packages\pygame\examples</code>.</p>
-<p>Tänk på att det inte är viktigt hur sprites:en (.png-bilderna) ser ut, rita dem väldigt enkelt i Paint eller motsvarande och lägg istället tiden på att få allt att fungera. När spelet är färdigt kan ni leta efter snygga bilder.</p>
-<p>Ett användbart koncept i den här uppgiften är <strong>polymorfism</strong>. Detta kommer ni ha nytta av på update-metoden.</p>
+<p><strong>Koncept:</strong> Grafik, objekt-orientering, polymorfism</p>
 <ul>
 <li><strong>Svårighetsgrad:</strong> 3</li>
 </ul>
+<h2 id="tips">Tips</h2>
+<p><strong>OBS!</strong> Det här är en uppgift av den större och svårare typen. Börja otroligt enkelt först och få det att fungera. Bygg ut det fungerande programmet successivt tills det är så coolt som ni vill ha det.</p>
+<p>Exempel kan vara bra för att komma igång, bäst lär man sig dock genom att göra själv. Använd gärna <a href="http://programarcadegames.com/index.php?chapter=introduction_to_sprites">detta</a> exempel som utgångspunkt. Ni kan även se andra exempel <a href="http://www.pygame.org/docs/tut/intro/intro.html">online</a> eller i Pygame mappen:<br><code>C:\Python27\Lib\site-packages\pygame\examples</code>.</p>
+<p>Tänk på att det inte är viktigt hur sprites:en (.png-bilderna) ser ut, rita dem väldigt enkelt i Paint eller motsvarande och lägg istället tiden på att få allt att fungera. När spelet är färdigt kan ni skaffa snygga bilder.</p>
+<p><strong>OBS!</strong> På Chalmers linux-datorer saknas vissa dependencies till pygame vilket medför att den endast stödjer .bmp-bilder. Detta är relevant att tänka på om ni skulle få felmeddelandet:<br><code>pygame.error: File is not a Windows BMP file</code>.</p>
 <h2 id="delmoment">Delmoment</h2>
 <ol>
 <li>Skapa ett fönster och en update-loop som ritar om fönstret efter 1/60 sekunder. Varje iteration är en s.k. <strong>frame</strong>.</li>
-<li>Skapa en egen klass <code>GraphObject</code> som ärver <code>pygame.sprite.Sprite</code> Skapa en funktion update(self, time) som anropas i varje frame.</li>
+<li>Skapa en egen klass <code>GraphObject</code> som <a href="http://en.wikibooks.org/wiki/A_Beginner&#39;s_Python_Tutorial/Classes#Inheritance">ärver</a> <code>pygame.sprite.Sprite</code> Skapa en funktion update(self, time) som anropas i varje frame.</li>
 <li>Rita ut några objekt mha <code>g = pygame.sprite.Group()</code> och <code>g.draw(screen)</code>.</li>
-<li>Gör en klass för spelaren som ärver <code>GraphObject</code> och skapa ett objekt av denna som utgör spelaren. Skapa i denna klass en ny metod <code>update(self,time)</code> som även kallar på <code>GraphObject.update(self,time)</code>.</li>
+<li>Gör en klass för spelaren som ärver <code>GraphObject</code> och skapa ett objekt av denna som utgör spelaren. Skapa i denna klass en ny metod <code>update(self,time)</code> som även kallar på <code>GraphObject.update(self,time)</code>. Detta är ett exempel på <a href="http://stackoverflow.com/questions/3724110/practical-example-of-polymorphism"><strong>polymorfism</strong></a>.</li>
 <li>I update-loopen: fånga upp indata genom <code>pygame.event.get()</code>. Låt spelaren flytta på sig när man använder pil-tangenterna. Avbryt loopen om <code>pygame.QUIT</code> eller Escape matas in.</li>
-<li>Flytta <em>kameran</em> då spelaren rör sig. Detta kan göras på flera sätt, exempelvis genom att man har en Board klass som håller koll på var kameran är. För att se att kameran faktiskt rör sig så är det lämpligt att rita ut några <em>stillastående</em> objekt också.</li>
+<li>Flytta <em>kameran</em> då spelaren rör sig. Detta kan göras på flera sätt, exempelvis genom att man har en Board klass som håller koll på var kameran är. För att se att kameran faktiskt rör sig så är det lämpligt att rita ut några <em>stillastående</em> objekt också. Dessa kan senare ersättas med exempelvis bilder av gräs.</li>
 <li>Skapa en projektil-klass som ärver <code>GraphObject</code>. Då du klickar på Space eller vänster musknapp ska en projektil flyga iväg åt det hållet du har muspekaren.</li>
 <li>Skapa en monster-klass som ärver <code>GraphObject</code>. Rita ut några monster då spelet startas.</li>
 <li>Beräkna <a href="http://www.pygame.org/docs/tut/SpriteIntro.html">kollisioner</a> mha <code>pygame.sprite.groupcollide()</code> eller <code>pygame.sprite.spritecollide()</code>. Då ett monster träffas av en projektil ska han ta skada och eller dö. Om spelaren kolliderar med ett monster ska spelaren ta skada och eller dö. Se guider ovan under <strong>Tips</strong> för hjälp med kollisionshantering.</li>
@@ -25,9 +26,8 @@
 <h2 id="utbyggnad">Utbyggnad</h2>
 <ul>
 <li>Se till att brädets gränser fungerar: monster och spelaren ska inte kunna passera ut utanför brädet. Kameran ska aldrig visa något utanför brädet.</li>
-<li>Lägg till fler roliga monster med olika beteenden: exempelvis en som följer efter eller en som skjuter egna projektiler.</li>
+<li>Lägg till fler roliga monster med olika beteenden: exempelvis en som följer efter spelaren eller en som skjuter egna projektiler.</li>
 <li>Lägg till cooldown för skott och monster attack.</li>
-<li>Rita ut bakgrundsfigurer som blommor och gräs.</li>
 <li>Räkna poäng under spelets gång, till exempel när man dödar monster. Man kan även räkna tiden som gått sedan spelets start. Skriv ut denna poäng vid game over.</li>
 <li>Spela upp ljud då en spelare eller monster tar skada. Spela även upp ljud då en projektil skjuts iväg och spelet är slut.</li>
 <li>Låt användaren kunna pausa spelet för att fortsätta senare.</li>

@@ -1,0 +1,62 @@
+<h1 id="programfl-de-primtal-och-den-magiska-modulo-operatorn">Programflöde, primtal och den magiska modulo operatorn</h1>
+<p>I denna uppgift får du lära dig om:</p>
+<ul>
+<li>logiska satser</li>
+<li>loopar</li>
+<li><p>funtioner</p>
+</li>
+<li><p><strong>Svårighetsgrad:</strong> 1</p>
+</li>
+</ul>
+<h2 id="delmoment">Delmoment</h2>
+<ol>
+<li><p>Undersök <a href="exercise-files/control_flow/loop.py">loop.py</a>, <a href="exercise-files/control_flow/if.py">if.py</a>, <a href="exercise-files/control_flow/if_else.py">if_else.py</a>,
+ I de ovan nämnda filerna finns kod som demonstrerar hur loopar och if-satser fungerar.</p>
+<p> Börja med att köra loop.py
+ Undersök nu vad som händer om du ändrar parametern till range funktionen från 10 till något annat tal.</p>
+<p> Fortsätt nu med att köra de två filerna if.py och if_else.py.
+ Se till att du förstår skillnaden mellan flera if-satser och en stor if-else sats.
+ Diskutera det gärna med en handledare om du är osäker.</p>
+</li>
+<li><p>Undersök <a href="exercise-files/control_flow/fizzbuzz.py">fizzbuzz.py</a>,
+ Läs igenom specifikationen i fizzbuzz.py för att se hur fizzbuzz ska fungera.
+ Testa att köra fizzbuzz.py. Notera att &quot;FizzBuzz&quot; aldrig skrivs ut.
+ Det är något som är fel på if-else satsen. Försök lösa problemet.
+ Tips: programmet körs linjärt. Tänk rad för rad vad som händer.</p>
+</li>
+<li><p>Funktioner
+ Funktioner har du redan sett och använt, exempelvis print(&quot;Hello, World!&quot;) eller range(10), dock är det här första gången som du ser hela definitionen på en.
+ Du kan själv definiera funktioner genom att skriva</p>
+<p> def funktionsnamn(parameter1, parameter2):</p>
+<pre><code> funktionskropp
+</code></pre><p> funktionsnamn innehåller vanligtvis små och stora bokstäver samt &#39;_&#39;.
+ parameterlistan (det innanför parenteserna) kan innehålla hur många parametrar som helst men behöver heller inte ha några alls. parametrar separeras med &#39;,&#39;.</p>
+<p> Var som helst i en funktion kan man använda &#39;return x&#39;, funktionen returnerar då x och avbryts direkt. programmet körs vidare där funktionen kallades.</p>
+<p> När man skriver små program kanske man inte behöver funktioner. Men när det börjar bli större så är de väldigt användbara för att strukturera upp koden och göra abstraktioner. Man kan tänka på en funktion som en låda där du stoppar in något på ena sidan och får ut något på andra. Lådan brukar ofta kallas &quot;black box&quot; då vi inte vet hur beräkningarna görs. Däremot vet vi vad vi kan stoppa in och vad vi förväntar oss att få ut.</p>
+<p> I <a href="exercise-files/control_flow/functions.py">functions.py</a> ser du några exempel på hur funktioner fungerar. Du behöver inte memorera allt nu, du kan återkomma och se hur syntaxen ser ut, det viktiga är att du förstår vilka möjligheter det ger dig.</p>
+</li>
+</ol>
+<ol>
+<li><p>Funktionen &quot;contains&quot; och listor.
+ Listor finns i de flesta programmeringsspråk, här används listor för att visa ett exempel på en användbar funktion. Därför går vi nu bara igenom basen för hur listor fungerar.</p>
+<p> <a href="exercise-files/control_flow/lists.py">lists.py</a> innehåller exempel och övningar på hur listor kan användas.</p>
+<p> När du är nöjd och har fått lite förståelse för hur listor fungerar gå vidare till <a href="exercise-files/control_flow/contains.py">contains.py</a> (se också tillhörande <a href="exercise-files/control_flow/boolean_arithmetic.py">boolean_arithmetic.py</a>).
+ Undersök hur contains funktionen fungerar och skriv sedan färdigt sublist_contains.</p>
+</li>
+<li><p>Härnäst ska vi beräkna primtal.
+ <a href="exercise-files/control_flow/prime.py">prime.py</a> innehåller en funktion för att kolla om ett tal är ett primtal. Funktionen är dock inte helt färdigskriven.
+ Funktionen säger att alla tal under 2 är primtal. Detta då range(2,x), x &lt; 2 ger en tom lista och därmed returnerar funktionen True.</p>
+<p> Skriva ut all primtal under 100.
+ Använd en for loop för att iterera över alla tal mellan 0 och 100,
+ använd sedan en if-sats som kollar resultatet från is_prime funktionen och skriv ut talet om det är ett primtal.</p>
+<p> Skapa en funktion som du kallar för print_primenumbers_less_than(x). Låt funktionen ta en parameter x och lägg din redan skrivna logik i denna funktion.
+ Se till så att din logik istället skriver ut alla primtal upp till x.</p>
+</li>
+</ol>
+<p>När du har klarat dessa övning bör du ha kunskap om:</p>
+<ul>
+<li>if och if-else satser</li>
+<li>for-loopar</li>
+<li>listor</li>
+<li>funktioner, parameterlistor och returvärden</li>
+</ul>
