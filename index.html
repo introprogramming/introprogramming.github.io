@@ -76,31 +76,26 @@ def func(input):
         <section>
           <h1 id="info">Kursinformation</h1>
 	  <p>
-	    Kursen hålls i fem <em>block</em>, där varje block består av en timme föreläsning följt av två timmar praktisk övning.
-	    För det femte och sista blocket ändras ordningen så att den praktiska övningen inleder, och föreläsningen avslutar.
+	    Kursen hålls i fem <em>block</em>, där varje block består av <!-- en timme föreläsning följt av två timmar praktisk övning. -->
+            två timmar programmerande följt av en uppföljande timme föreläsning och diskussion.
+	    (För det första och inledande blocket är ordningen omvänd så att diskussionen inleder, och programmerandet följer.)
 	  </p>
 
 	  <dl>
 	    <dt>Kursansvarig</dt>
       <dd>Niklas Broberg (niklas dot broberg at chalmers dot se)</dd>
 	    <dt>Biträdande</dt>
-      <dd>Mikael Kågebäck (kageback at chalmers dot se)</dd>
+      <dd>Boel Nelson (boeln at chalmers dot se)</dd>
 	  </dl>
 
-          <h2>Föreläsningsanteckningar</h2>
+          <h2>Anteckningar från föreläsningar</h2>
+	  <p>Inga än så länge.
           <ul>
-           <li><a href="Modeller.pdf">Mönster, modeller och metoder</a></li>
-           <li><a href="Programspråk.pdf">Programspråk och paradigmer</a></li>
-           <li>Avrundning: 
-             <a href="Avrundning (DV).pdf">[DV]</a> |
-             <a href="Avrundning (IT).pdf">[IT]</a> | 
-             <a href="Avrundning (D).pdf">[D]</a>
-           </li>
           </ul>
   </section>
 
     <section id="schedule-accordion">
-      <h1>Information for respektive program</h1>
+      <h1>Information för respektive program</h1>
 
       <a href="#schedule-gu" data-toggle="collapse" class="gu collapsed schedule-link" data-parent="schedule-accordion">Datavetenskap, GU</a>
   	  <section id="schedule-gu" class="collapse gu">
@@ -108,18 +103,20 @@ def func(input):
 
   	    <h3>Schema</h3>
   	    <p>
-  	      Föreläsningar hålls i sal ED. Övningspass hålls i datorsalarna 5355 och 6225.
+  	      Föreläsningar hålls i sal ED. Övningspass hålls i datorsal 5217 samt VD-rummet.
+	      I kursen ingår en workshop om prokrastinering, fredag 29/8, kl 10-12, i sal ED.
   	    </p>
   	    <ul>
-  	      <li>20 (ons): 14-17</li>
+  	      <li>20 (ons): 14-17 (börjar med föreläsning)</li>
   	      <li>21 (tor): 9-12</li>
   	      <li>25 (mån): 9-12</li>
   	      <li>26 (tis): 8-11</li>
-  	      <li>27 (ons): 9-12 (börjar med övning)</li>
+  	      <li>27 (ons): 9-12 </li>
   	      <li>28 (tor): 13-15 (extra övningstillfälle för demonstration)</li>
+	      <li>29 (fre): 10-12 (föreläsning)
   	    </ul>
   	    <h3>Assistenter</h3>
-  	    <p>Anders Bastos, Behrouz Talebi, Björn Norgren, Erik Jungmark, Henry Ottervad, Johan Larsson</p>
+  	    <p>Behrouz Talebi, Björn Norgren, Erik Jungmark, Henry Ottervad, Niclas Krause, Axel Olivecrona</p>
   	  </section>
 
       <a href="#schedule-cth-it" data-toggle="collapse" class="it collapsed schedule-link" data-parent="schedule-accordion">Informationsteknik, Chalmers</a>
@@ -127,18 +124,19 @@ def func(input):
   	    <h2>Informationsteknik, Chalmers</h2>
   	    <h3>Schema</h3>
   	    <p>
-  	      Föreläsningar hålls i sal HC2. Övningspass hålls i datorsalarna ES61, ES62 och ES63.
+  	      Föreläsningar hålls i sal HC2. Övningspass hålls i datorsal 2480 samt E-studion.
   	    </p>
   	    <ul>
-  	      <li>20 (ons): 9-12</li>
+  	      <li>20 (ons): 9-12 (börjar med föreläsning)</li>
   	      <li>22 (fre): 9-12</li>
   	      <li>25 (mån): 14-17</li>
   	      <li>26 (tis): 9-12</li>
-  	      <li>28 (tor): 9-12 (börjar med övning)</li>
+  	      <li>28 (tor): 10-12 (övning) + 13-14 (föreläsning)</li>
   	    </ul>
 
   	    <h3>Assistenter</h3>
-  	    <p>André 'Tejp' Samuelsson, Anton Myrholm, Christoffer 'Meddan' Medin, Erik 'Neon' Norlander, Erik 'Fredokin' Risfelt, Ivar Josefsson, Johan 'Horv' Andersson, Johan Brook, Niclas Alexandersson, Pontus 'Malm' Malm</p>
+  	    <p>André 'Tejp' Samuelsson, Anton Myrholm, Erik 'Neon' Norlander, Fredrik Bengtsson, 
+               Johan 'Horv' Andersson, Kevin Hoogendijk, Mattias Nilsen, Neda Farhand, Pontus 'Malm' Malm</p>
   	  </section>
 
       <a href="#schedule-cth-d" data-toggle="collapse" class="d collapsed schedule-link" data-parent="schedule-accordion">Datateknik, Chalmers</a>
@@ -146,18 +144,19 @@ def func(input):
   	    <h2>Datateknik, Chalmers</h2>
   	    <h3>Schema</h3>
   	    <p>
-  	      Föreläsningar hålls i sal HC1. Övningspass hålls i datorsalarna 3354, 3358 och 3507.
+  	      Föreläsningar hålls i sal HC3. Övningspass hålls i datorsalarna 3354, 3358, 3507 samt 2505.
   	    </p>
   	    <ul>
-  	      <li>20 (ons): 13-16</li>
+  	      <li>20 (ons): 13-16 (börjar med föreläsning)</li>
   	      <li>21 (tor): 8-11</li>
   	      <li>25 (mån): 13-16</li>
   	      <li>27 (ons): 8-11</li>
-  	      <li>28 (tor): 13-16 (börjar med övning)</li>
+  	      <li>28 (tor): 13-16</li>
   	    </ul>
 
   	    <h3>Assistenter</h3>
-  	    <p>Boel Nelson, Johan Hasselqvist, Johan 'Ndushi' Lindskogen, <a href="mailto:scleif@student.chalmers.se?Subject=Introprog">Leif Schelin</a>, <a href="mailto:baxemyr@gmail.com?Subject=Introprog">Marco Baxemyr</a>, Martin Hermansson, Niklas Helmertz, Pierre Krafft</p>
+  	    <p>Ivar Josefsson, <a href="mailto:baxemyr@gmail.com?Subject=Introprog">Marco Baxemyr</a>, Martin Hermansson, 
+               Maxim Goretskyy, Maximilian Algehed, Niklas Helmertz, Philip Tingberg</p>
       </section>
     </section>
 
