@@ -1,18 +1,30 @@
-<h1 id="survival-game">Survival game</h1>
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>README.html</title></head><body><h1>Survival game</h1>
+
 <p>2d shooter spel: överlev mot monster så länge som möjligt. Du har vapen och (o)begränsad ammunition. Spelet kan givetvis anpassas så att det blir precis som man vill. Det här är tänkt att spelas med tangentbord och mus. Perspektivet är tänkt som rakt uppifrån.</p>
+
 <p><strong>Koncept:</strong> Grafik, objekt-orientering, polymorfism</p>
+
 <ul>
 <li><strong>Svårighetsgrad:</strong> 3</li>
 </ul>
-<h2 id="tips">Tips</h2>
+
+<h2>Tips</h2>
+
 <p><strong>OBS!</strong> Det här är en uppgift av den större och svårare typen. Börja otroligt enkelt först och få det att fungera. Bygg ut det fungerande programmet successivt tills det är så coolt som ni vill ha det.</p>
-<p>Exempel kan vara bra för att komma igång, bäst lär man sig dock genom att göra själv. Använd gärna <a href="http://programarcadegames.com/index.php?chapter=introduction_to_sprites">detta</a> exempel som utgångspunkt. Ni kan även se andra exempel <a href="http://www.pygame.org/docs/tut/intro/intro.html">online</a> eller i Pygame mappen:<br><code>C:\Python27\Lib\site-packages\pygame\examples</code>.</p>
+
+<p>Exempel kan vara bra för att komma igång, bäst lär man sig dock genom att göra själv. Använd gärna <a href="http://programarcadegames.com/index.php?chapter=introduction_to_sprites">detta</a> exempel som utgångspunkt. Ni kan även se andra exempel <a href="http://www.pygame.org/docs/tut/intro/intro.html">online</a> eller i Pygame mappen: <br />
+<code>C:\Python27\Lib\site-packages\pygame\examples</code>.</p>
+
 <p>Tänk på att det inte är viktigt hur sprites:en (.png-bilderna) ser ut, rita dem väldigt enkelt i Paint eller motsvarande och lägg istället tiden på att få allt att fungera. När spelet är färdigt kan ni skaffa snygga bilder.</p>
-<p><strong>OBS!</strong> På Chalmers linux-datorer saknas vissa dependencies till pygame vilket medför att den endast stödjer .bmp-bilder. Detta är relevant att tänka på om ni skulle få felmeddelandet:<br><code>pygame.error: File is not a Windows BMP file</code>.</p>
-<h2 id="delmoment">Delmoment</h2>
+
+<p><strong>OBS!</strong> På Chalmers linux-datorer saknas vissa dependencies till pygame vilket medför att den endast stödjer .bmp-bilder. Detta är relevant att tänka på om ni skulle få felmeddelandet: <br />
+<code>pygame.error: File is not a Windows BMP file</code>.</p>
+
+<h2>Delmoment</h2>
+
 <ol>
 <li>Skapa ett fönster och en update-loop som ritar om fönstret efter 1/60 sekunder. Varje iteration är en s.k. <strong>frame</strong>.</li>
-<li>Skapa en egen klass <code>GraphObject</code> som <a href="http://en.wikibooks.org/wiki/A_Beginner&#39;s_Python_Tutorial/Classes#Inheritance">ärver</a> <code>pygame.sprite.Sprite</code> Skapa en funktion update(self, time) som anropas i varje frame.</li>
+<li>Skapa en egen klass <code>GraphObject</code> som <a href="http://en.wikibooks.org/wiki/A_Beginner's_Python_Tutorial/Classes#Inheritance">ärver</a> <code>pygame.sprite.Sprite</code> Skapa en funktion update(self, time) som anropas i varje frame.</li>
 <li>Rita ut några objekt mha <code>g = pygame.sprite.Group()</code> och <code>g.draw(screen)</code>.</li>
 <li>Gör en klass för spelaren som ärver <code>GraphObject</code> och skapa ett objekt av denna som utgör spelaren. Skapa i denna klass en ny metod <code>update(self,time)</code> som även kallar på <code>GraphObject.update(self,time)</code>. Detta är ett exempel på <a href="http://stackoverflow.com/questions/3724110/practical-example-of-polymorphism"><strong>polymorfism</strong></a>.</li>
 <li>I update-loopen: fånga upp indata genom <code>pygame.event.get()</code>. Låt spelaren flytta på sig när man använder pil-tangenterna. Avbryt loopen om <code>pygame.QUIT</code> eller Escape matas in.</li>
@@ -23,7 +35,9 @@
 <li>Skapa nya monster med jämna mellanrum och eller när ett monster dör. Placera ut dem på slumpade positioner.</li>
 <li>Låt spelet ta slut när spelaren dör. Rita gärna ut en GameOver sprite. OBS, man måste fortfarande kunna avbryta spelet med Escape och <code>pygame.QUIT</code>.</li>
 </ol>
-<h2 id="utbyggnad">Utbyggnad</h2>
+
+<h2>Utbyggnad</h2>
+
 <ul>
 <li>Se till att brädets gränser fungerar: monster och spelaren ska inte kunna passera ut utanför brädet. Kameran ska aldrig visa något utanför brädet.</li>
 <li>Lägg till fler roliga monster med olika beteenden: exempelvis en som följer efter spelaren eller en som skjuter egna projektiler.</li>
@@ -33,7 +47,10 @@
 <li>Låt användaren kunna pausa spelet för att fortsätta senare.</li>
 <li>Fixa något annat kul som ni vill lägga till :)</li>
 </ul>
-<h2 id="externa-bibliotek">Externa bibliotek</h2>
+
+<h2>Externa bibliotek</h2>
+
 <ul>
 <li><a href="http://www.pygame.org/download.shtml">pygame</a></li>
 </ul>
+</body></html>

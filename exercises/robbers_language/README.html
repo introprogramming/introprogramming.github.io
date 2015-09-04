@@ -1,0 +1,61 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>README.html</title></head><body><h1>Rövarspråk</h1>
+
+<p><strong>Svårighetsgrad:</strong> 1</p>
+
+<p>Skriv ett program som översätter från svenska till rövarspråket!</p>
+
+<h2>Delmoment</h2>
+
+<ol>
+<li><p>Ett program som skriver ut översättningen för en given sträng (eller argument under körning). <strong>Svårighetsgrad 1</strong>.</p>
+
+<pre><code>python robber.py Johan
+Jojohohanon
+</code></pre></li>
+<li><p>Ett program som väntar på input från användaren och skriver ut översättningen tills programmet avslutas. <strong>Svårighetsgrad 1</strong>.</p>
+
+<pre><code>python robber.py
+Hi! What do you want to translate?
+&gt; Johan
+The translation is:
+Jojohohanon
+&gt; Hästar är fina.
+The translation is:
+HoHäsostotaror äror fofinona.
+...
+</code></pre></li>
+<li><p>Ett program som givet en sökväg till en textfil översätter allt innehåll. <strong>Svårighetsgrad 1</strong>.</p>
+
+<pre><code>python robber.py svensk_fil.txt
+Translating from 'svensk_fil.txt':
+&lt;Translation here .. &gt;
+</code></pre></li>
+<li><p>Ett program som gör allt ovanstående på samma gång! Dvs. beroende på argument till programmet ska den bete sig olika. <strong>Svårighetsgrad 2</strong>.</p>
+
+<pre><code># Med enkelt ord som argument
+python robber.py Johan
+Jojohohanon
+# Inget argument
+python robber.py
+Hi! What do you want to translate?
+&gt; Johan
+The translation is:
+Jojohohanon
+# Sökväg till textfil som argument
+python robbery.py svensk_fil.txt
+&lt;Translation here .. &gt;
+</code></pre>
+
+<p>Programmet bör alltså känna igen olika argument och därmed bestämma sig för hur den ska köra.</p></li>
+</ol>
+
+<h2>Om rövarspråket</h2>
+
+<blockquote>
+  <p>Rövarspråket (rorövovarorsospoproråkoketot) är ett enkelt kodspråk som framför allt används av barn. Det blev populärt i och med Astrid Lindgrens romaner om Kalle Blomkvist. Idén till rövarspråket ska ha kommit från Astrids make, Sture Lindgren, som använde det i lek med sina kamrater som barn. Eftersom rövarspråket har en enkel struktur som är lätt att avkoda passar sig språket inte i skriven form. Men i talad form kan det vara svårt för en oinsatt att förstå vad som sägs, särskilt om det talas snabbt.</p>
+</blockquote>
+
+<p><a href="http://sv.wikipedia.org/wiki/R%C3%B6varspr%C3%A5ket">Wikipedia</a></p>
+
+<p>Regeln för rövarspråket är att man efter varje konsonant lägger ett o (kort å-ljud) och därefter samma konsonant igen, till exempel byts b ut mot "bob" och f mot "fof". Vokalerna är oförändrade. "Jag talar rövarspråket" blir alltså "jojagog totalolaror rorövovarorsospoproråkoketot".</p>
+</body></html>
