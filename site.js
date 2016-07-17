@@ -1,11 +1,5 @@
 ;(function() {
 
-// Convert base64 encoded string to UTF8
-var base64ToUTF8 = function(str) {
-  str = str.replace(/\s/g, '')
-  return Base64.decode(str)
-}
-
 // Micro templating
 var render = function(string, data) {
   for(var s in data) {
@@ -40,37 +34,17 @@ var getReadmeForExercise = function(exercise) {
 //   etc.
 var extractLevel = function(content) {
   var matches = content.match(/Svårighetsgrad[\W\s]*(\d)/i)
+//  console.log(matches)
   return matches ? matches[1] : false
 }
 
 // Create a plain object for templating
 var transformExercise = function(exercise, i) {
   var readme = exercise.readme
-  var files = exercise.files
   // Convert Markdown -> HTML with the Marked library
+  // TODO: Remove this, use HTML compiled during import instead
   var content = marked(readme)
-
   var name = $(content).eq(0).text()
-
-  // Include listing of attached files if there are any
-  if (files.length > 0) {
-    var items = []
-    files.forEach(function(file) {
-      items.push('<a href="exercises/' + exercise.name + '/' + file + '" download>' + file + '</a>')
-    })
-
-    var filesText = '\n<h2>Filer</h2>\n' + items.join(", ")
-
-    // Inject list of files before first h2, or at the end if there are none
-    var $html = $('<div />', { html: content })
-    h2s = $html.find('h2')
-    if (h2s.length > 0) {
-      h2s.first().before(filesText)
-    } else {
-      $html.append(filesText)
-    }
-    content = $html.html()
-  }
 
   return {
     order: i,
@@ -90,7 +64,7 @@ var sortByLevel = function(exercises) {
 
 // Build the list from an exercises object array
 var renderReadmeList = function(exercises) {
-  var $container = $(".exercises-list"),
+  var $container = $(".exercises-list"),
       tmpl = template($("#exercise-template").html())
 
   // Render each exercise with 'tmpl', whose only argument
@@ -115,7 +89,6 @@ var whenAll = function(promises) {
 
 // Fetch READMEs and build list
 var fetchReadmes = function() {
-  var self = this
 
   // Fetch exercises
   getExercises()
@@ -190,19 +163,18 @@ $(function() {
   $("#accordion").on("shown.bs.collapse", function(evt) {
     var panel = $(evt.target)
 
-    smoothScroll.animateScroll(null, "#"+panel.attr("id") , { offset: 40, speed: 300 })
+//    smoothScroll.animateScroll(null, "#"+panel.attr("id") , { offset: 40, speed: 300 })
   })
 
   // smooth scrolling for anchor links
 
-  smoothScroll.init({
-    offset: 50,
-    easing: 'easeInOutQuad',
-    callbackAfter: function() {
-      $('[data-spy="scroll"]').scrollspy('refresh')
-    }
-  })
+//  smoothScroll.init({
+//    offset: 50,
+//    easing: 'easeInOutQuad',
+//    callbackAfter: function() {
+//      $('[data-spy="scroll"]').scrollspy('refresh')
+//    }
+//  })
 })
-
 
 })()
