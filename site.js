@@ -24,7 +24,7 @@ var getExercises = function() {
 }
 
 var getReadmeForExercise = function(exercise) {
-  return $.get('exercises/' + exercise.name + '/README.md')
+  return $.get('exercises/' + exercise.name + '/README.html')
 }
 
 // Matches:
@@ -33,24 +33,20 @@ var getReadmeForExercise = function(exercise) {
 //   Svårighetsgrad <level>
 //   etc.
 var extractLevel = function(content) {
-  var matches = content.match(/Svårighetsgrad[\W\s]*(\d)/i)
-//  console.log(matches)
+  var matches = content.match(/Svårighetsgrad[\D]*(\d)/i)
   return matches ? matches[1] : false
 }
 
 // Create a plain object for templating
 var transformExercise = function(exercise, i) {
   var readme = exercise.readme
-  // Convert Markdown -> HTML with the Marked library
-  // TODO: Remove this, use HTML compiled during import instead
-  var content = marked(readme)
-  var name = $(content).eq(0).text()
+  var name = $(readme).filter("h1").first().text()
 
   return {
     order: i,
     level: extractLevel(readme) || 'Okänd',
     text: name, // The first heading
-    content: content
+    content: readme
   }
 }
 
