@@ -36,8 +36,15 @@ def main():
             if member.startswith(EXERCISE_PARENT_PATH) and os.path.basename(member) == 'README.md':
                 extract_exercise(zf, os.path.dirname(member), exercise_list)
 
+        with zf.open(EXERCISE_PARENT_PATH + '/exercises_order') as source:
+            grading_list = source.read().splitlines()
+
+    # Quick and dirty sorting of exercises according to grading file
+    sorted_exercise_list = ( [ m for n in grading_list for m in exercise_list if m['name'] == n ]
+                             + [ n for n in exercise_list if n['name'] not in grading_list ] )
+                
     # Dump list of exercises
-    write_create_dir('../exercises.json', json.dumps(exercise_list))
+    write_create_dir('../exercises.json', json.dumps(sorted_exercise_list))
 
     print "Done"
     print "Creating exercise archive..."
@@ -47,7 +54,6 @@ def main():
     print "Done"
     print '%d exercises can be found in the directory "%s" and in the archive "%s"' % (
         len(exercise_list), EXTRACT_DIR, FINAL_ZIP_PATH)
-
 
 def extract_exercise(zf, zip_dir, exercise_list):
     # Extract the README
