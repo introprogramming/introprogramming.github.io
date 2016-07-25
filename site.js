@@ -39,14 +39,36 @@ var extractLevel = function(content) {
 
 // Create a plain object for templating
 var transformExercise = function(exercise, i) {
-  var readme = exercise.readme
-  var name = $(readme).filter("h1").first().text()
+  var content = exercise.readme
+  var files = exercise.files
+  var name = $(content).filter("h1").first().text()
+
+  // Include listing of attached files if there are any
+  if (files.length > 0) {
+
+    var items = []
+    files.forEach(function(file) {
+      items.push('<a href="exercises/' + exercise.name + '/' + file + '" download>' + file + '</a>')
+    })
+
+    var filesText = '\n<h2>Filer</h2>\n' + items.join(", ")
+
+    // Inject list of files before first h2, or at the end if there are none
+    var $html = $('<div />', { html: content })
+    h2s = $html.find('h2')
+    if (h2s.length > 0) {
+      h2s.first().before(filesText)
+    } else {
+      $html.append(filesText)
+    }
+    content = $html.html()
+  }
 
   return {
     order: i,
-    level: extractLevel(readme) || 'Okänd',
+    level: extractLevel(content) || 'Okänd',
     text: name, // The first heading
-    content: readme
+    content: content
   }
 }
 
@@ -88,6 +110,7 @@ var fetchReadmes = function() {
 
   // Fetch exercises
   getExercises()
+
     // Then for each exercise, fetch its README
     .then(function(exercises) {
 
@@ -104,12 +127,15 @@ var fetchReadmes = function() {
       })
       return dfd
     })
+    
     // Transform each exercise (parse out relevant data for templating)
     .then(function(exercises) {
       return exercises.map(transformExercise)
     })
+
     // Sort by difficulty level
     .then(sortByLevel)
+
     // Render the exercises with README content
     .then(renderReadmeList)
 }
@@ -158,19 +184,8 @@ $(function() {
 
   $("#accordion").on("shown.bs.collapse", function(evt) {
     var panel = $(evt.target)
-
-//    smoothScroll.animateScroll(null, "#"+panel.attr("id") , { offset: 40, speed: 300 })
   })
 
-  // smooth scrolling for anchor links
-
-//  smoothScroll.init({
-//    offset: 50,
-//    easing: 'easeInOutQuad',
-//    callbackAfter: function() {
-//      $('[data-spy="scroll"]').scrollspy('refresh')
-//    }
-//  })
 })
 
 })()
