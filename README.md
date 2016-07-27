@@ -38,6 +38,8 @@ python import.py
 
 If successful, exercise files have been extracted to the `exercises/` directory in the website directory. The files have also been packed into `exercises.zip` found in the same directory as `exercises/`.
 
+The order of the exercises, as they are presented on the front page, is calculated firstly from the difficulty level specified in the README, and secondly from the order in which they are listed in the file `exercises_order` found in the exercise repo.
+
 ## Host locally
 
 During development, it can be useful to host the site locally on your machine. (The site will not work properly if you only open `index.html` as a file.) A simple way to host, with Python installed, is running this while in the website directory:

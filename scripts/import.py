@@ -39,9 +39,9 @@ def main():
         with zf.open(EXERCISE_PARENT_PATH + '/exercises_order') as source:
             grading_list = source.read().splitlines()
 
-    # Quick and dirty sorting of exercises according to grading file
-    sorted_exercise_list = ( [ m for n in grading_list for m in exercise_list if m['name'] == n ]
-                             + [ n for n in exercise_list if n['name'] not in grading_list ] )
+    print "Done"
+    print "Sorting exercises according to grading list..."
+    sorted_exercise_list = sort_exercise_list(exercise_list, grading_list)
                 
     # Dump list of exercises
     write_create_dir('../exercises.json', json.dumps(sorted_exercise_list))
@@ -55,6 +55,20 @@ def main():
     print '%d exercises can be found in the directory "%s" and in the archive "%s"' % (
         len(exercise_list), EXTRACT_DIR, FINAL_ZIP_PATH)
 
+def sort_exercise_list(exercise_list, grading_list):
+    # Quick and dirty sorting of exercises according to grading 
+
+    sorted_items    = [ m for n in grading_list for m in exercise_list if m['name'] == n ]
+    unsorted_items  = [ n for n in exercise_list if n['name'] not in grading_list ]
+    items_not_found = [ n for n in grading_list if n not in [ m['name'] for m in exercise_list ] ]
+
+    if unsorted_items:
+        print "The following exercises is missing in grading file:\n  " + "\n  ".join([m['name'] for m in unsorted_items])
+    if items_not_found:
+        print "The following exercises in the grading file is missing in the repo:\n  " + "\n  ".join(items_not_found)
+
+    return sorted_items + unsorted_items
+    
 def extract_exercise(zf, zip_dir, exercise_list):
     # Extract the README
     readme_path = zip_dir + '/README.md'
