@@ -1,11 +1,5 @@
 ;(function() {
 
-// Convert base64 encoded string to UTF8
-var base64ToUTF8 = function(str) {
-  str = str.replace(/\s/g, '')
-  return Base64.decode(str)
-}
-
 // Micro templating
 var render = function(string, data) {
   for(var s in data) {
@@ -30,7 +24,7 @@ var getExercises = function() {
 }
 
 var getReadmeForExercise = function(exercise) {
-  return $.get('exercises/' + exercise.name + '/README.md')
+  return $.get('exercises/' + exercise.name + '/README.html')
 }
 
 // Matches:
@@ -39,21 +33,19 @@ var getReadmeForExercise = function(exercise) {
 //   Svårighetsgrad <level>
 //   etc.
 var extractLevel = function(content) {
-  var matches = content.match(/Svårighetsgrad[\W\s]*(\d)/i)
+  var matches = content.match(/Svårighetsgrad[\D]*(\d)/i)
   return matches ? matches[1] : false
 }
 
 // Create a plain object for templating
 var transformExercise = function(exercise, i) {
-  var readme = exercise.readme
+  var content = exercise.readme
   var files = exercise.files
-  // Convert Markdown -> HTML with the Marked library
-  var content = marked(readme)
-
-  var name = $(content).eq(0).text()
+  var name = $(content).filter("h1").first().text()
 
   // Include listing of attached files if there are any
   if (files.length > 0) {
+
     var items = []
     files.forEach(function(file) {
       items.push('<a href="exercises/' + exercise.name + '/' + file + '" download>' + file + '</a>')
@@ -74,7 +66,7 @@ var transformExercise = function(exercise, i) {
 
   return {
     order: i,
-    level: extractLevel(readme) || 'Okänd',
+    level: extractLevel(content) || 'Okänd',
     text: name, // The first heading
     content: content
   }
@@ -90,7 +82,7 @@ var sortByLevel = function(exercises) {
 
 // Build the list from an exercises object array
 var renderReadmeList = function(exercises) {
-  var $container = $(".exercises-list"),
+  var $container = $(".exercises-list"),
       tmpl = template($("#exercise-template").html())
 
   // Render each exercise with 'tmpl', whose only argument
@@ -115,10 +107,10 @@ var whenAll = function(promises) {
 
 // Fetch READMEs and build list
 var fetchReadmes = function() {
-  var self = this
 
   // Fetch exercises
   getExercises()
+
     // Then for each exercise, fetch its README
     .then(function(exercises) {
 
@@ -135,12 +127,15 @@ var fetchReadmes = function() {
       })
       return dfd
     })
+    
     // Transform each exercise (parse out relevant data for templating)
     .then(function(exercises) {
       return exercises.map(transformExercise)
     })
+
     // Sort by difficulty level
     .then(sortByLevel)
+
     // Render the exercises with README content
     .then(renderReadmeList)
 }
@@ -189,20 +184,8 @@ $(function() {
 
   $("#accordion").on("shown.bs.collapse", function(evt) {
     var panel = $(evt.target)
-
-    smoothScroll.animateScroll(null, "#"+panel.attr("id") , { offset: 40, speed: 300 })
   })
 
-  // smooth scrolling for anchor links
-
-  smoothScroll.init({
-    offset: 50,
-    easing: 'easeInOutQuad',
-    callbackAfter: function() {
-      $('[data-spy="scroll"]').scrollspy('refresh')
-    }
-  })
 })
-
 
 })()
