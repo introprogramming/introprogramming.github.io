@@ -16,39 +16,39 @@ To install all dependencies, run this while in the website directory:
 ```
 npm install
 ```
-After than you should be ready to go. Note that NodeJS and gulp is **only needed in order to compile Sass code**. Writing plain HTML is done as usual.
+After that, you should be ready to go. Note that NodeJS and gulp is **only needed in order to compile Sass code**. Writing plain HTML is done as usual.
 
 ## Fetching and packaging exercises from GitHub
 
-The site shows the `README`s of all pushed exercises on the front page. But apart from that, it might nice neat to have the exercises as files on disk as well (for printing, sharing, etc.). Thus an `import` script exists.
+The site shows the READMEs of the exercises on the front page. To update and fetch new READMEs, an import script exists. The script will additionally create a downloadable archive containing all exercises (for printing, sharing, etc.).
 
-### Import
+The import of exercises from the exercise repo is done through a Python script. It downloads the latest available exercises on the `master` branch. To begin, make sure you have the `markdown2` package installed on your system. If it's not, it can be installed by running:
 
-By running the `import` script in the `scripts` directory, all exercises pushed to `master` at `exercises` will be downloaded as HTML and Markdown and put in an `exercises` directory.
-
-```bash
-node scripts/import
+```
+pip install markdown2
 ```
 
-We're using OAuth to authenticate with GitHub (otherwise we'll hit the ceiling for how many requests per day you can do). Therefore the script needs an access token available as an environment variable in `GH_TOKEN`. You can do this with:
+(Remember to prepend with `sudo` if you are not running with elevated privileges on a Unix-like system.)
 
-```bash
-GH_TOKEN="ce7c5b2150374a20aeeaa799867d0d50ae638d28" node scripts/import
+The import script needs to be run from inside the `scripts/` directory. In that directory, start the import by running:
+
+```
+python import.py
 ```
 
-### Packaging
+If successful, exercise files have been extracted to the `exercises/` directory in the website directory. The files have also been packed into `exercises.zip` found in the same directory as `exercises/`.
 
-The main website links to a file `exercises.zip`. To generate this, either do it by hand (duh) or use the `package` script. The script takes one argument – the input directory to create the zip file from.
+The order of the exercises, as they are presented on the front page, is calculated firstly from the difficulty level specified in the README, and secondly from the order in which they are listed in the file `exercises_order` found in the exercise repo.
 
-```bash
-node scripts/package ./exercises
+## Host locally
+
+During development, it can be useful to host the site locally on your machine. (The site will not work properly if you only open `index.html` as a file.) A simple way to host, with Python installed, is running this while in the website directory:
+
 ```
-This script might seen redundant, but stay with me: it's used *inside* the import script as well. By passing a `--zip` option to `import`, the directory is zipped as well.
-
-```bash
-GH_TOKEN="ce7c5b2150374a20aeeaa799867d0d50ae638d28" node scripts/import --zip
+python -m SimpleHTTPServer
 ```
-All in one command. Neat?
+
+You should now be able to test the site by visiting `localhost:8000` in your browser.
 
 ## Deploying
 

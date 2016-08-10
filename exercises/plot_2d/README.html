@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>README.html</title></head><body><h1>Plot 2d</h1>
+
+<p>Skriv en grafritare som kan rita en funktion <code>y = f(x)</code> i två dimensioner över ett givet intervall. Till exempel, rita <code>3*sin(x)-x</code> över <code>0&lt;x&lt;2pi</code>.</p>
+
+<ul>
+<li><strong>Svårighetsgrad:</strong> 3</li>
+</ul>
+
+<h2>Delmoment</h2>
+
+<ol>
+<li>Rita en linje i ett fönster med 640x480 pixlar mha <code>pygame.draw.line(...)</code>, dvs få grafiken att överhuvudtaget fungera. <strong>Svårighetsgrad 2</strong>.</li>
+<li>Antag ett koordinatsystem med y positivt uppåt och x positivt åt höger, dvs som man brukar rita dem i matten. Skapa en funktion för att omvandla en koordinat i detta system till en "pixel-position" i fönstret (dvs y positiv nedåt). Denna kan lätt kontrolleras mha att rita linjer enligt 1. Till exempel <code>[0,0]</code> -> <code>[0,480]</code>. <strong>Svårighetsgrad 2</strong>.</li>
+<li>I omvandlingsfunktionen: ta nu även hänsyn till skala - gör så att fönstret utgör området <code>0&lt;x&lt;10</code> och <code>0&lt;y&lt;10</code> snarare än <code>0&lt;x&lt;640</code> etc. Till exempel <code>[5,0]</code> -> <code>[320, 480]</code>. <strong>Svårighetsgrad 2</strong>.</li>
+<li>Skapa en funktion som omvandlar en matematisk funktion <code>f</code> till <code>N</code> koordinater <code>[x, y]</code> med jämna mellanrum. Till exempel <code>f(x)=2*x</code> -> <code>[[0,0],[1,2],...,[5,10]]</code> <strong>Svårighetsgrad 3</strong>.</li>
+<li>Omvandla de <code>N</code> koordinaterna till en lista av pixel-positioner. <strong>Svårighetsgrad 2</strong>.</li>
+<li>Rita ut funktionen genom att stoppa in listan av positioner till <code>pygame.draw.lines(...)</code>. <strong>Svårighetsgrad 2</strong>.</li>
+</ol>
+
+<h2>Utbyggnad</h2>
+
+<ul>
+<li>Anpassa så att fönstret går från <code>x_min &lt; x &lt; x_max</code> istället för <code>0 &lt; x &lt; 10</code>. Observera att <code>x_min</code> respektive <code>y_min</code> såväl som <code>x_max</code> och <code>y_max</code> kan vara negativa. <strong>Svårighetsgrad 3</strong>.</li>
+<li>Rita ut koordinat-axlarna. <strong>Svårighetsgrad 2</strong>.</li>
+<li>Rita rutnät eller markeringar på koordinat-axlarna. <strong>Svårighetsgrad 3</strong>.</li>
+<li>Låt användaren ange <code>n</code> funktioner, med respektive färg, som ska ritas. <strong>Svårighetsgrad 3</strong>.</li>
+</ul>
+
+<h2>Externa bibliotek:</h2>
+
+<ul>
+<li><a href="http://www.pygame.org/news.html">pygame</a></li>
+</ul>
+</body></html>

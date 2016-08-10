@@ -1,0 +1,35 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>README.html</title></head><body><h1>MIDI Keyboard</h1>
+
+<p>Att bygga ett "mjukvaru-piano" eller s.k. MIDI-keyboard med ca 14 tangenter (c1-e2). När man trycker ner en tangent ska det motsvara att trycka ner en tangent på en synth (och låta genom högtalarna).</p>
+
+<ul>
+<li><strong>Svårighetsgrad:</strong> 2</li>
+</ul>
+
+<h2>Delmoment</h2>
+
+<ol>
+<li>Spela upp ett MIDI-ljud på datorn mha <a href="http://www.pygame.org/docs/ref/midi.html#pygame.midi.Output">pygame.midi.Output</a>, i vårt fall räcker det med <code>note_on()</code> och <code>note_off()</code>. Observera att man måste ha valt ett instrument (0 motsvarar piano) och volym, <code>velocity</code>, för att det ska låta något. <br />
+<strong>OBS</strong> Om <code>pygame.midi.get_default_output_id()</code> returnerar <code>-1</code> så finns det ingen MIDI ut-enhet på datorn. Den här uppgiften behöver en fungerande MIDI out enhet.</li>
+<li>Mappa <a href="http://www.pygame.org/docs/ref/key.html">tangenter</a> på tangentbordet till MIDI-toner så att exempelvis 'q' översätts till <code>54</code>. Pianots mitten-c representeras av MIDI-tonen <code>60</code>, ciss av <code>61</code> etc. Sätt gärna "vita" och "svarta" tangenter på två olika rader på tangentbordet.</li>
+<li>Skapa ett tomt pygame-fönster mha <a href="http://www.pygame.org/docs/ref/display.html#pygame.display.set_mode">pygame.display</a>. Detta behövs för att pygame ska kunna se tangentbordsnedtryckningarna.</li>
+<li>Läs in tangentnedtryckningar med <code>pygame.event</code> i en loop och slå på/av respektive ton. Låt loopen avbrytas vid <code>pygame.QUIT</code> och <code>pygame.K_ESCAPE</code>, så att programmet avslutas.</li>
+</ol>
+
+<h2>Utbyggnad</h2>
+
+<ul>
+<li>Funktionalitet för att byta oktav med exempelvis 'z' och 'x'. <strong>Svårighetsgrad 2</strong></li>
+<li>Låt användaren kunna höja och sänka volymen. <strong>Svårighetsgrad 1</strong></li>
+<li>Låt användaren välja/byta <a href="http://www.skoogmusic.com/manual/manual1.1/Skoog-Window/navigation/MIDI-Tab/index">MIDI-instrument</a>. <strong>Svårighetsgrad 2</strong></li>
+</ul>
+
+<h2>Externa bibliotek</h2>
+
+<p>Spelbiblioteket <code>pygame</code> och dess modul <code>pygame.midi</code>:</p>
+
+<ul>
+<li><a href="http://www.pygame.org/download.shtml">pygame</a></li>
+<li><a href="http://www.pygame.org/docs/ref/midi.html#pygame.midi.Output">pygame.midi</a></li>
+</ul>
+</body></html>

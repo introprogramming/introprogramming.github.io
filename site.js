@@ -1,11 +1,5 @@
 ;(function() {
 
-// Convert base64 encoded string to UTF8
-var base64ToUTF8 = function(str) {
-  str = str.replace(/\s/g, '')
-  return Base64.decode(str)
-}
-
 // Micro templating
 var render = function(string, data) {
   for(var s in data) {
@@ -23,55 +17,14 @@ var template = function(string) {
   return render.bind(this, string)
 }
 
-/*
-  Main GitHub API wrapper
-*/
-GitHub = {
-  // Details ..
-  details: {
-    url: "https://api.github.com",
-    owner: "introprogramming",
-    repo: "exercises"
-  },
-  readme: "README.md",
-  token: "ce7c5b2150374a20aeeaa799867d0d50ae638d28",
-  _base: function() {
-    return render("{url}/repos/{owner}/{repo}/contents", this.details)
-  },
+var getExercises = function() {
+  return $.getJSON('exercises.json').then(function(res) {
+    return res
+  })
+}
 
-  Helpers: {
-
-    path: function(path) {
-      return GitHub._base() + path
-    },
-
-    // GET url
-    get: function(url) {
-      return $.ajax({
-        url: url,
-        data: {
-          access_token: GitHub.token
-        },
-        dataType: 'jsonp'
-      });
-    }
-  },
-
-  // GET /exercises
-
-  getExercises: function() {
-    return this.Helpers.get(this.Helpers.path("/exercises")).then(function(res) {
-      return res.data.map(function(exercise) {
-        return exercise.name
-      })
-    })
-  },
-
-  // GET /exercises/:exercise/README.md
-
-  getReadmeForExercise: function(exercise) {
-    return this.Helpers.get(this.Helpers.path("/exercises/"+ exercise +"/"+this.readme))
-  }
+var getReadmeForExercise = function(exercise) {
+  return $.get('exercises/' + exercise.name + '/README.html')
 }
 
 // Matches:
@@ -80,21 +33,41 @@ GitHub = {
 //   Svårighetsgrad <level>
 //   etc.
 var extractLevel = function(content) {
-  var matches = content.match(/Svårighetsgrad[\W\s]*(\d)/i)
+  var matches = content.match(/Svårighetsgrad[\D]*(\d)/i)
   return matches ? matches[1] : false
 }
 
 // Create a plain object for templating
 var transformExercise = function(exercise, i) {
-  // Convert encoded README content to regular text
-  var raw = base64ToUTF8(exercise.data.content),
-      // Convert Markdown -> HTML with the Marked library
-      content = marked(raw)
+  var content = exercise.readme
+  var files = exercise.files
+  var name = $(content).filter("h1").first().text()
+
+  // Include listing of attached files if there are any
+  if (files.length > 0) {
+
+    var items = []
+    files.forEach(function(file) {
+      items.push('<a href="exercises/' + exercise.name + '/' + file + '" download>' + file + '</a>')
+    })
+
+    var filesText = '\n<h2>Filer</h2>\n' + items.join(", ")
+
+    // Inject list of files before first h2, or at the end if there are none
+    var $html = $('<div />', { html: content })
+    h2s = $html.find('h2')
+    if (h2s.length > 0) {
+      h2s.first().before(filesText)
+    } else {
+      $html.append(filesText)
+    }
+    content = $html.html()
+  }
 
   return {
     order: i,
-    level: extractLevel(raw) || 'Okänd',
-    text: $(content).eq(0).text(),      // The first heading
+    level: extractLevel(content) || 'Okänd',
+    text: name, // The first heading
     content: content
   }
 }
@@ -109,7 +82,7 @@ var sortByLevel = function(exercises) {
 
 // Build the list from an exercises object array
 var renderReadmeList = function(exercises) {
-  var $container = $(".exercises-list"),
+  var $container = $(".exercises-list"),
       tmpl = template($("#exercise-template").html())
 
   // Render each exercise with 'tmpl', whose only argument
@@ -133,27 +106,38 @@ var whenAll = function(promises) {
 }
 
 // Fetch READMEs and build list
+var fetchReadmes = function() {
 
-var fetchReadmeas = function() {
-  var self = this
+  // Fetch exercises
+  getExercises()
 
-  GitHub
-    // Fetch exercises from the GitHub API
-    .getExercises()
     // Then for each exercise, fetch its README
-    .then(function(exercises){
-      // Return a promise when all README-fetches have settled
-      return whenAll( exercises.map(GitHub.getReadmeForExercise.bind(GitHub)) )
+    .then(function(exercises) {
+
+      // Add readme to each exercise
+      // Could probably be done more elegantly
+
+      var dfd = $.Deferred()
+      // Modify exercise object when all README-fetches have settled
+      whenAll(exercises.map(getReadmeForExercise)).then(function(readmes) {
+        readmes.forEach(function(readme, i) {
+          exercises[i].readme = readme
+        })
+        dfd.resolve(exercises)
+      })
+      return dfd
     })
+    
     // Transform each exercise (parse out relevant data for templating)
     .then(function(exercises) {
       return exercises.map(transformExercise)
     })
+
     // Sort by difficulty level
     .then(sortByLevel)
+
     // Render the exercises with README content
     .then(renderReadmeList)
-
 }
 
 var buildNavigation = (function($) {
@@ -192,7 +176,7 @@ var buildNavigation = (function($) {
 
 $(function() {
 
-  fetchReadmeas()
+  fetchReadmes()
 
   buildNavigation({
     container: "[role='main']"
@@ -200,20 +184,8 @@ $(function() {
 
   $("#accordion").on("shown.bs.collapse", function(evt) {
     var panel = $(evt.target)
-
-    smoothScroll.animateScroll(null, "#"+panel.attr("id") , { offset: 40, speed: 300 })
   })
 
-  // smooth scrolling for anchor links
-
-  smoothScroll.init({
-    offset: 50,
-    easing: 'easeInOutQuad',
-    callbackAfter: function() {
-      $('[data-spy="scroll"]').scrollspy('refresh')
-    }
-  })
 })
-
 
 })()
