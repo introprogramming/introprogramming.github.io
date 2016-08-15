@@ -143,7 +143,7 @@ def save_html_readme(zf, file_path_in_zip):
         if md_readme.startswith(codecs.BOM_UTF8):
             md_readme = md_readme[len(codecs.BOM_UTF8):]
 
-        html_readme = markdown2.markdown(md_readme, extras=['fenced-code-blocks', 'cuddled-lists'])
+        html_readme = markdown2.markdown(md_readme, extras=['fenced-code-blocks', 'cuddled-lists', 'code-friendly'])
         target.write(HTML_README_TEMPLATE % html_readme)
 
 
