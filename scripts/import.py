@@ -1,3 +1,4 @@
+import codecs
 import os
 import zipfile
 import urllib2
@@ -42,7 +43,7 @@ def main():
     print "Done"
     print "Sorting exercises according to grading list..."
     sorted_exercise_list = sort_exercise_list(exercise_list, grading_list)
-                
+
     # Dump list of exercises
     write_create_dir('../exercises.json', json.dumps(sorted_exercise_list))
 
@@ -54,6 +55,7 @@ def main():
     print "Done"
     print '%d exercises can be found in the directory "%s" and in the archive "%s"' % (
         len(exercise_list), EXTRACT_DIR, FINAL_ZIP_PATH)
+
 
 def sort_exercise_list(exercise_list, grading_list):
     # Quick and dirty sorting of exercises according to grading 
@@ -68,7 +70,8 @@ def sort_exercise_list(exercise_list, grading_list):
         print "The following exercises in the grading file is missing in the repo:\n  " + "\n  ".join(items_not_found)
 
     return sorted_items + unsorted_items
-    
+
+
 def extract_exercise(zf, zip_dir, exercise_list):
     # Extract the README
     readme_path = zip_dir + '/README.md'
@@ -134,8 +137,14 @@ def save_html_readme(zf, file_path_in_zip):
     silent_make_dir(os.path.dirname(out_path))
     target = file(out_path, 'wb')
     with source, target:
-        md = markdown2.markdown(source.read(), extras=['fenced-code-blocks', 'cuddled-lists'])
-        target.write(HTML_README_TEMPLATE % md)
+        md_readme = source.read()
+
+        # Strip BOM from start of file, if there is any
+        if md_readme.startswith(codecs.BOM_UTF8):
+            md_readme = md_readme[len(codecs.BOM_UTF8):]
+
+        html_readme = markdown2.markdown(md_readme, extras=['fenced-code-blocks', 'cuddled-lists'])
+        target.write(HTML_README_TEMPLATE % html_readme)
 
 
 def zip_to_extract_path(file_path_in_zip):
