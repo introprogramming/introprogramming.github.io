@@ -1,0 +1,45 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>README.html</title></head><body><h1>Battleship</h1>
+
+<p>Skapa en implementation av <em>Battleship</em>/<em>Sänka skepp</em>.</p>
+
+<p><strong>Introduktion</strong>:
+I denna uppgiften kommer ni att självständigt skapa en implementation av <em>Battleship</em>, med valfritt grafikbibliotek. Denna uppgift kommer att ge en inblick i hur du arbetar med olika lägen i ett program, t.ex. kommando läsning och sedan exekvering vid olika programtillstånd.</p>
+
+<p><strong>Koncept</strong>: Grafik, Programlägen, Kommandoexekvering, Spelprogrammering</p>
+
+<p><strong>Externa Bibliotek</strong>:
+ - Förslag till grafik
+   <a href="https://pypi.python.org/pypi/PyOpenGL">PyOpenGL</a>
+   <a href="https://pypi.python.org/pypi/UniCurses">nCurses </a>
+   <a href="http://www.pygame.org/download.shtml">PyGame  </a></p>
+
+<ul>
+<li><strong>Svårighetsgrad:</strong> 3</li>
+</ul>
+
+<h2>Implementera Battleship</h2>
+
+<p>Följande skall finnas i spelet:</p>
+
+<ol>
+<li><p>Spelet skall börja med att båda spelarna plaserar sina skepp på sin sida av spelplanen utan att motståndaren kan se skeppen.</p></li>
+<li><p>Ett skepp skall kunna roteras under plaseringssekvensen.</p></li>
+<li><p>När spelaren är klar kan inte dennes skepp flyttas.</p></li>
+<li><p>När båda spelarna har plaserat sina skepp börjar stridsläget.</p></li>
+<li><p>Varje spelare tar tur om att försöka skjuta på motståndarens skepp, vare sig man träffar en skeppsdel eller inte skall detta markeras, givetvis med olika markeringar. Man kan alltid se sina tidigare markeringar under sin egen tur, men inte under motståndarens.</p></li>
+<li><p>När alla en spelares skeppsdelar har sänkts vinner motståndaren och spelet avslutas, alternativt börjar om.</p></li>
+<li><p>På sin egen runda kan man se sina egna skepp, som då är markerade på de delar som motståndaren träffat, men
+motståndarens missade skott syns inte.</p></li>
+<li><p>Det skall finns skepp av olika storlekar och former.</p></li>
+</ol>
+
+<h2>Utbyggnad</h2>
+
+<p>Försök gärna överföra spelet till 3D om ni använder PyGame eller PyOpenGL. <strong>Svårighetsgrad 3</strong></p>
+
+<p>Inför nya vapen som har olika attribut och som kan väljas på sin egen runda. <strong>Svårighetsgrad 2</strong></p>
+
+<p>Om ni implementerar spelet genom enkla kommandon, t.ex. "moveto (x, y)" eller "fire (x, y)" är det relativt enkelt att spela över ett nätverk om dessa kommandon skickas mellan de spelande datorerna. Notera att även om ni har byggt spelet för musklickningar eller tangenttryck kan dessa översättas till de motsvarande textkommandon som skulle kunna skickas över nätet. <strong>Svårighetsgrad 2</strong></p>
+
+<p>Lycka till!</p>
+</body></html>

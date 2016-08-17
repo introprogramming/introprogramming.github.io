@@ -6,8 +6,12 @@ En applikation som tar ett tal som input, och skriver ut det första [fibonacci-
 
 ## Delmoment
 
-1. Låt programmet ta emot input och skriv ut detta. **Svårighetsgrad:** 1
-2. Skriv en metod som räknar ut och returnerar det första fibonacci-tal som är större än input-talet. Se till att ändra så att resultatet från metoden är det som skrivs ut istället. **Svårighetsgrad:** 1
+1. Börja med en loop som hela tiden, med hjälp av några variabler, räknar ut nästa fibonacci-tal och skriver ut det. Loopen behöver bara gå tillräckligt många varv för att du ska kunna se om den skriver ut rätt talföljd. **Svårighetsgrad:** 1
+2. Gör så att loopen, istället för att snurra ett visst antal varv, sluter när den har räknat ut ett fibonacci-tal som överstiger något tal (spelar inte så stor roll vilket tal just nu). **Svårighetsgrad:** 1
+3. Låt nu användaren att under körning mata in ett tal och byt ut talet i förra delmomentet mot detta istället. **Svårighetsgrad:** 1
+4. Ta bort utskriften av alla fibonacci-tal i loopen och skriv endast ut resultatet när det slutgiltiga talet är framtaget. **Svårighetsgrad:** 1
+5. Skapa en funktion som tar emot ett argument och flytta in hela loopen. Funktionen ska returnera det värde som förut skrevs ut. Exempelvis ska `fibonacci(10)` returnera 13. **Svårighetsgrad:** 1
+6. Se till så att programmet anropar funktionen med talet du får som input som argument och skriver ut resultatet. **Svårighetsgrad:** 1
 
 ## Utbyggnad
 

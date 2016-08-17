@@ -9,7 +9,7 @@ I denna uppgift får du lära dig om:
 
 ## Delmoment
 
-1. Undersök [loop.py](exercise-files/control_flow/loop.py), [if.py](exercise-files/control_flow/if.py), [if_else.py](exercise-files/control_flow/if_else.py),
+1. Undersök loop.py, if.py, if_else.py,
 	I de ovan nämnda filerna finns kod som demonstrerar hur loopar och if-satser fungerar.
 	
 	Börja med att köra loop.py
@@ -19,7 +19,7 @@ I denna uppgift får du lära dig om:
 	Se till att du förstår skillnaden mellan flera if-satser och en stor if-else sats.
 	Diskutera det gärna med en handledare om du är osäker.
 	
-2. Undersök [fizzbuzz.py](exercise-files/control_flow/fizzbuzz.py),
+2. Undersök fizzbuzz.py,
 	Läs igenom specifikationen i fizzbuzz.py för att se hur fizzbuzz ska fungera.
 	Testa att köra fizzbuzz.py. Notera att "FizzBuzz" aldrig skrivs ut.
 	Det är något som är fel på if-else satsen. Försök lösa problemet.
@@ -39,19 +39,19 @@ I denna uppgift får du lära dig om:
 	
 	När man skriver små program kanske man inte behöver funktioner. Men när det börjar bli större så är de väldigt användbara för att strukturera upp koden och göra abstraktioner. Man kan tänka på en funktion som en låda där du stoppar in något på ena sidan och får ut något på andra. Lådan brukar ofta kallas "black box" då vi inte vet hur beräkningarna görs. Däremot vet vi vad vi kan stoppa in och vad vi förväntar oss att få ut.
 
-	I [functions.py](exercise-files/control_flow/functions.py) ser du några exempel på hur funktioner fungerar. Du behöver inte memorera allt nu, du kan återkomma och se hur syntaxen ser ut, det viktiga är att du förstår vilka möjligheter det ger dig.
+	I functions.py ser du några exempel på hur funktioner fungerar. Du behöver inte memorera allt nu, du kan återkomma och se hur syntaxen ser ut, det viktiga är att du förstår vilka möjligheter det ger dig.
 
 
 4. Funktionen "contains" och listor.
 	Listor finns i de flesta programmeringsspråk, här används listor för att visa ett exempel på en användbar funktion. Därför går vi nu bara igenom basen för hur listor fungerar.
 
-	[lists.py](exercise-files/control_flow/lists.py) innehåller exempel och övningar på hur listor kan användas.
+	lists.py innehåller exempel och övningar på hur listor kan användas.
 
-	När du är nöjd och har fått lite förståelse för hur listor fungerar gå vidare till [contains.py](exercise-files/control_flow/contains.py) (se också tillhörande [boolean_arithmetic.py](exercise-files/control_flow/boolean_arithmetic.py)).
+	När du är nöjd och har fått lite förståelse för hur listor fungerar gå vidare till contains.py.
 	Undersök hur contains funktionen fungerar och skriv sedan färdigt sublist_contains.
 
 5. Härnäst ska vi beräkna primtal.
-	[prime.py](exercise-files/control_flow/prime.py) innehåller en funktion för att kolla om ett tal är ett primtal. Funktionen är dock inte helt färdigskriven.
+	prime.py innehåller en funktion för att kolla om ett tal är ett primtal. Funktionen är dock inte helt färdigskriven.
 	Funktionen säger att alla tal under 2 är primtal. Detta då range(2,x), x < 2 ger en tom lista och därmed returnerar funktionen True.
 
 	Skriva ut all primtal under 100.

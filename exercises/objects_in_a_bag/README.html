@@ -1,0 +1,115 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>README.html</title></head><body><h1>Objects in a bag</h1>
+
+<p>Öva med att programmera med objekt.</p>
+
+<p><strong>Introduktion</strong>:
+I denna uppgift skapar vi ett program som tillåter dig att skapa och lägga föremål i en "säck". Vi ser denna process som om vi har två separata föremål, ett antal <em>föremål</em> som läggs i en <em>påse</em>, och programmerar därför med datastrukturer som reflekterar detta.</p>
+
+<p><strong>Koncept</strong>: Objektorienterad programmering</p>
+
+<ul>
+<li><strong>Svårighetsgrad:</strong> 1</li>
+</ul>
+
+<h2>Snabb introduktion - Att skapa ett objekt genom en klass</h2>
+
+<p>En <em>klass</em> kan ses som en mall. Det är mycket enkelt att skapa en klass i Python, allt som behövs är att skriva <em>class</em> följt av namnet på klassen:</p>
+
+<div class="codehilite"><pre><span></span><code>    <span class="k">class</span> <span class="nc">Klassnamn</span><span class="p">:</span>
+</code></pre></div>
+
+<p>Med denna mall kan vi skapa objekt som följer de regler som läggs i klassen. T.ex. kan vi säga att klassen har ett namn, då kommer alla objekt som skapas från klassen få ett namn. Men vi kan också säga att ett objekt har ett visst beteende genom att lägga funktioner i klassen.</p>
+
+<p>Så till att börja med kan vi säga att varje objekt av klassen <em>Person</em> skall ha ett namn med följande mall/klass</p>
+
+<div class="codehilite"><pre><span></span><code>    <span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Tristian&quot;</span>
+</code></pre></div>
+
+<p>Detta betyder att när vi skapar ett objekt av typen <em>Person</em> kommer ____init____ funktionen att tillkallas automatiskt (Det är en process som hanteras av Python och namnet måste stämma exakt. Däremot kan fler argument läggas till.)</p>
+
+<p>Som ni märker finns det ett argument till funktionen som här kallas för <em>self</em>. Detta är en referens till objektet som precis skapats. En referens kan ses som ett id-nummer, alla objekt som kommer från mallen <em>Person</em> får ett unikt id för att urskilja dem. Detta betyder att alla funktioner som läggs i en klass måste ha <em>self</em> som första argument, så att vi vet vilket objekt som vi för tillfällt hanterar när en funktion skall exekveras i klassen.</p>
+
+<p>Även ser ni att vi kan lägga till ett attribut (i vårt fall <em>name</em>) på objektet genom att skriva <em>self.name = värde</em>. Detta betyder "till det objekt med id-nummber <em>self</em>, hämta attributet <em>name</em> och sätt det till <em>värde</em>".</p>
+
+<p>För att nu skapa ett objekt av typen <em>Person</em> kallar man på klassen som en funktion, som då retunerar id-nummret till det nya objektet.</p>
+
+<div class="codehilite"><pre><span></span><code>    <span class="n">mitt_objekt</span> <span class="o">=</span> <span class="n">Person</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Notera att vi inte angav argumentet <em>self</em>, det gör Python automatiskt för dig.</p>
+
+<p>Nu är variabeln <em>mitt_objekt</em> ett id-nummber till en ny Person. Vi kan t.ex. kolla objektets namn med följande:</p>
+
+<div class="codehilite"><pre><span></span><code>    <span class="k">print</span><span class="p">(</span> <span class="n">mitt_objekt</span><span class="o">.</span><span class="n">name</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>Som då kommer att skriva ut <em>Tristian</em> i konsolen om programmet körs.</p>
+
+<p>Man kan givetvis även ändra namnet på samma sätt som i __init __, men istället anger vi <em>mitt_objekt</em> som id-nummer:</p>
+
+<div class="codehilite"><pre><span></span><code>    <span class="n">mitt_objekt</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">v</span><span class="err">ä</span><span class="n">rde</span>
+</code></pre></div>
+
+<p>Fler funktioner kan givetvis läggas till i klassen och flera klasser kan skapas, inte bara en klass som heter <em>Person</em>.</p>
+
+<p>För att tillkalla andra funktioner som tillhör objektet skriver man <em>mitt_objekt.funktionsNamnHär( argument... )</em>, detta gör att <em>self</em> i den tillkallade funktionen sätts till samma värde som <em>mitt_objekt</em>.</p>
+
+<p>Läs mer om klasser i <a href="https://docs.python.org/2/tutorial/classes.html">Pythons dokumentation</a></p>
+
+<h2>Implementera uppgiften</h2>
+
+<p>Vi kommer att skapa två klasser (<em>Item</em> och <em>Bag</em>) och ett litet testprogram.</p>
+
+<h3>Skapa en klass 'Item'</h3>
+
+<ol>
+<li><p>Skapa en klass som heter <em>Item</em> och säg i <em>__init __( self, name, color, weight )</em> att den skall ha attributen <em>name</em>, <em>color</em> och <em>weight</em> som sätts till motsvarande funktionsargument.</p></li>
+<li><p>Ge klassen en funktion <em>getDescription( self )</em> som retunerar en sträng i följande format:</p></li>
+</ol>
+
+<p>"[name: <em>objektets_namn</em>, color: <em>objektets_färg</em>, weight: <em>objektets_vikt</em>]"</p>
+
+<p><a href="https://docs.python.org/2/tutorial/controlflow.html#defining-functions">Läs mer om att använda funktioner här</a></p>
+
+<h3>Skapa en klass 'Bag'</h3>
+
+<ol>
+<li><p>Skapa en klass som heter <em>Bag</em> och säg i <em>__init __( self, label )</em> att den skall ha attributen <em>items</em>, <em>label</em>. Attributet <em>label</em> sätts till motsvarande funktionsargument medan attributet <em>items</em> sätts till en tom lista (denna kommer sedan att innehålla referenser till objekt av typen <em>Item</em>).</p></li>
+<li><p>Skapa en funktion som heter <em>addItem( self, item_object )</em> som lägger till <em>item_object</em> i sitt attribut <em>items</em>, som är en lista.</p></li>
+<li><p>Skapa en klass funktion som heter <em>getDescription( self )</em> som retunerar en sträng med sitt eget namn samt innehållet från alla objekt i sitt attribut <em>items</em>, där <em>Items</em> version av funktionen <em>getDescription()</em> kallas.</p></li>
+</ol>
+
+<h3>Testprogram</h3>
+
+<p>Följande programbit skall nu kunna exekveras utan problem.</p>
+
+<div class="codehilite"><pre><span></span><code>    <span class="n">bag</span> <span class="o">=</span> <span class="n">Bag</span><span class="p">(</span> <span class="s2">&quot;Min säck&quot;</span> <span class="p">)</span>
+    <span class="n">item_1</span> <span class="o">=</span> <span class="n">Item</span><span class="p">(</span> <span class="s2">&quot;Fisk&quot;</span><span class="p">,</span> <span class="s2">&quot;röd&quot;</span><span class="p">,</span> <span class="mf">10.0</span> <span class="p">)</span>
+    <span class="n">item_2</span> <span class="o">=</span> <span class="n">Item</span><span class="p">(</span> <span class="s2">&quot;Hund&quot;</span><span class="p">,</span> <span class="s2">&quot;brun&quot;</span><span class="p">,</span> <span class="mf">20.0</span> <span class="p">)</span>
+    <span class="n">item_3</span> <span class="o">=</span> <span class="n">Item</span><span class="p">(</span> <span class="s2">&quot;Fredrik&quot;</span><span class="p">,</span> <span class="s2">&quot;grön&quot;</span><span class="p">,</span> <span class="mf">9001.0</span> <span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span> <span class="n">bag</span><span class="o">.</span><span class="n">getDescription</span><span class="p">()</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>Och borde ge ett liknande resultat i konsolen:</p>
+
+<pre><code>'Min säck' contains the following:
+    - [name: Fisk, color: röd, weight: 10.0]
+    - [name: Hund, color: brun, weight: 20.0]
+    - [name: Fredrik, color: grön, weight: 9001.0]
+</code></pre>
+
+<h2>Utökningar</h2>
+
+<p>Gör en programloop som låter dig ta in kommandon genom <em>input()</em> och därmed påverka innehållet i säcken. Exempel på kommandon kan vara:</p>
+
+<ul>
+<li>"exit" - avsluta programmet.</li>
+<li>"add (name) (color) (weight)" - lägg till ett nytt objekt i säcken med de angivna värdena.</li>
+<li>"show" - skriv ut säckens nuvarande beskrivning i konsolen.</li>
+<li>"shuffle" - blanda runt innehållet i säcken.</li>
+</ul>
+
+<p><strong>Svårighetsgrad 2</strong></p>
+</body></html>

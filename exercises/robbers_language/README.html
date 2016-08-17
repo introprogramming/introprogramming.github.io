@@ -9,13 +9,13 @@
 <ol>
 <li><p>Ett program som skriver ut översättningen för en given sträng (eller argument under körning). <strong>Svårighetsgrad 1</strong>.</p>
 
-<pre><code>python robber.py Johan
+<div class="codehilite"><pre><span></span><code>python robber.py Johan
 Jojohohanon
-</code></pre></li>
+</code></pre></div></li>
 <li><p>Ett program som väntar på input från användaren och skriver ut översättningen tills programmet avslutas. <strong>Svårighetsgrad 1</strong>.</p>
 
-<pre><code>python robber.py
-Hi! What do you want to translate?
+<div class="codehilite"><pre><span></span><code>python robber.py
+Hi! What <span class="k">do</span> you want to translate?
 &gt; Johan
 The translation is:
 Jojohohanon
@@ -23,28 +23,28 @@ Jojohohanon
 The translation is:
 HoHäsostotaror äror fofinona.
 ...
-</code></pre></li>
+</code></pre></div></li>
 <li><p>Ett program som givet en sökväg till en textfil översätter allt innehåll. <strong>Svårighetsgrad 1</strong>.</p>
 
-<pre><code>python robber.py svensk_fil.txt
-Translating from 'svensk_fil.txt':
+<div class="codehilite"><pre><span></span><code>python robber.py svensk_fil.txt
+Translating from <span class="s1">&#39;svensk_fil.txt&#39;</span>:
 &lt;Translation here .. &gt;
-</code></pre></li>
+</code></pre></div></li>
 <li><p>Ett program som gör allt ovanstående på samma gång! Dvs. beroende på argument till programmet ska den bete sig olika. <strong>Svårighetsgrad 2</strong>.</p>
 
-<pre><code># Med enkelt ord som argument
+<div class="codehilite"><pre><span></span><code><span class="c1"># Med enkelt ord som argument</span>
 python robber.py Johan
 Jojohohanon
-# Inget argument
+<span class="c1"># Inget argument</span>
 python robber.py
-Hi! What do you want to translate?
+Hi! What <span class="k">do</span> you want to translate?
 &gt; Johan
 The translation is:
 Jojohohanon
-# Sökväg till textfil som argument
+<span class="c1"># Sökväg till textfil som argument</span>
 python robbery.py svensk_fil.txt
 &lt;Translation here .. &gt;
-</code></pre>
+</code></pre></div>
 
 <p>Programmet bör alltså känna igen olika argument och därmed bestämma sig för hur den ska köra.</p></li>
 </ol>

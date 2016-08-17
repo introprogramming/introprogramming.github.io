@@ -1,0 +1,213 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>README.html</title></head><body><h1>PyOpenGL och A*</h1>
+
+<p>Rita grafik med OpenGL och sökalgorithm med A*</p>
+
+<p><strong>Introduktion</strong>:
+OpenGL är en standardiserad uppsättning av intruktioner för att hantera hårdvaruaccellererad grafikrendering (mycket effektiv ritning av bilder) i en simulerad tredimensionell miljö. Givetvis kan man även använda detta till att rendera tvådimensionella bilder, vilket denna uppgiften kommer att stega igenom. Uppgiften har 2 delar, en för att rita grafik och en för att implementera en sökalgorithm för att hitta den kortaste möjliga vägen mellan två noder i en graf (i uppgiften sätts detta i sammanhanget att hitta den kortaste vägen i en labyrit).</p>
+
+<p>Eftersom att OpenGL bygger på Klient/Server interaktion kommer den delen av uppgiften vara mer utformad som ett "recept" och kan uppfattas som betydligt enklare än del 2, som kräver med kunskap om Python och programstrukturering med objekt. Själva slutprokuten är ett program som kan rita ut den kortaste vägen mellan en start- och slutpunkt i en labyrit.</p>
+
+<p><strong>Koncept</strong>: Grafik, API, algorithmimplementation, programstrukturering</p>
+
+<p><strong>Externa Bibliotek</strong>:</p>
+
+<ul>
+<li>Grafik <a href="https://pypi.python.org/pypi/PyOpenGL">PyOpenGL</a></li>
+<li>Bilder <a href="http://www.pythonware.com/products/pil/">PIL</a></li>
+</ul>
+
+<ul>
+<li><strong>Svårighetsgrad:</strong> 3</li>
+</ul>
+
+<h2>Delmoment - GLUT</h2>
+
+<ol>
+<li><strong>Importera moduler</strong>
+Importera följande i källkodsfilen för att få tillgång till OpenGL, GLUT och PIL.</li>
+</ol>
+
+<div class="codehilite"><pre><span></span><code>    <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+    <span class="kn">from</span> <span class="nn">OpenGL</span> <span class="kn">import</span> <span class="o">*</span>
+    <span class="kn">from</span> <span class="nn">OpenGL.GL</span> <span class="kn">import</span> <span class="o">*</span>
+    <span class="kn">from</span> <span class="nn">OpenGL.GLUT</span> <span class="kn">import</span> <span class="o">*</span>
+</code></pre></div>
+
+<ol>
+<li><strong>Skapa GLUT-fönster</strong>
+GLUT eller <em>OpenGL Utility Toolkit</em> är det som kommer att användas för att skapa ett fönter där OpenGL kan rita i. Detta åstakoms med följande kommandon och deras argumenttyper anges nedan:</li>
+</ol>
+
+<div class="codehilite"><pre><span></span><code>    <span class="n">glutInit</span><span class="p">(</span> <span class="o">*</span><span class="n">String</span><span class="o">*</span> <span class="p">)</span>
+    <span class="n">glutInitWindowSize</span><span class="p">(</span> <span class="o">*</span><span class="n">Integer</span> <span class="n">pixel_width</span><span class="o">*</span><span class="p">,</span> <span class="o">*</span><span class="n">Integer</span> <span class="n">pixel_height</span><span class="o">*</span> <span class="p">)</span>
+    <span class="n">window</span> <span class="o">=</span> <span class="n">glutCreateWindow</span><span class="p">(</span> <span class="o">*</span><span class="n">Byte</span><span class="o">-</span><span class="n">String</span> <span class="n">window_title</span><span class="o">*</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>Objektet <em>window</em> kommer då att ange en referens till fönstret som skapas.</p>
+
+<p>Notera att <em>glutCreateWindow</em> tar en <em>Byte-String</em> och <strong>inte</strong> en vanlig sträng.</p>
+
+<ol>
+<li><strong>Tillståndsfunktioner</strong>
+Vi behöver ange vad det skapta fönstret skall göra under dess olika tillstånd, bland annat när det väntar, ritar och byter storlek. Detta gör vi genom att binda funktionsreferenser.</li>
+</ol>
+
+<div class="codehilite"><pre><span></span><code>    <span class="n">glutReshapeFunc</span><span class="p">(</span> <span class="o">*</span><span class="n">function</span><span class="p">(</span> <span class="n">Integer</span> <span class="n">width</span><span class="p">,</span> <span class="n">Integer</span> <span class="n">height</span> <span class="p">)</span><span class="o">*</span> <span class="p">)</span>
+    <span class="n">glutDisplayFunc</span><span class="p">(</span> <span class="o">*</span><span class="n">function</span><span class="p">()</span><span class="o">*</span> <span class="p">)</span>
+    <span class="n">glutIdleFunc</span><span class="p">(</span> <span class="o">*</span><span class="n">function</span><span class="p">()</span><span class="o">*</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>Funktionen som ges till <em>glutReshapeFunc</em> kommer att exekveras då fönstret byter storlek. <em>glutDisplayFunc</em> kallas när fönstret behöver ritas om. <em>glutIdleFunc</em> genomförs när inget annat exekveras. Det finns många fler tillstånd att binda funktioner till, men dessa kan hittas i <a href="https://www.opengl.org/resources/libraries/glut/">GLUTs egna dokumentation</a>.</p>
+
+<p>Ett tips är att binda renderingsfunctionen även till <em>glutIdleFunc</em> för att få konternuerlig uppdatering av fönstret. Går renderingen av någon anledning för fort kan nu läsa om <em>time</em> modulens <em>sleep( secs )</em> function.</p>
+
+<ol>
+<li><strong>Köra program</strong>
+Nu kan all kontroll lämnas över till förnstret själv, genom att kalla funktionen <em>glutMainLoop()</em>. Notera att detta kommer att stoppa flödet av programmet tills fönstret stängs.</li>
+</ol>
+
+<p>Skulle programmet nu exekveras kommer ett fönster att visas på skärmen. Programmet stängs sedan av när fönstret stängs.</p>
+
+<h2>Delmoment - OpenGL</h2>
+
+<ol>
+<li><strong>Koppla OpenGL till fönster</strong>
+Till att börja med, varje gång som GLUT-fönstret ändrar storlek kommer OpenGL behöva ändra sin renderingsytas storlek samt renderingläge. Detta görs med följande funktioner:</li>
+</ol>
+
+<div class="codehilite"><pre><span></span><code>    <span class="n">glViewport</span><span class="p">(</span> <span class="o">*</span><span class="n">Integer</span> <span class="n">offset_x</span><span class="o">*</span><span class="p">,</span> <span class="o">*</span><span class="n">Integer</span> <span class="n">offset_y</span><span class="o">*</span><span class="p">,</span> <span class="o">*</span><span class="n">Integer</span> <span class="n">width</span><span class="o">*</span><span class="p">,</span> <span class="o">*</span><span class="n">Integer</span> <span class="n">height</span><span class="o">*</span> <span class="p">)</span>
+    <span class="n">glMatrixMode</span><span class="p">(</span> <span class="n">GL_PROJECTION</span> <span class="p">)</span>
+    <span class="n">glLoadIdentity</span><span class="p">()</span>
+    <span class="n">glOrtho</span><span class="p">(</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">*</span><span class="n">Float</span> <span class="n">width</span><span class="o">*</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">*</span><span class="n">Float</span> <span class="n">height</span><span class="o">*</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span> <span class="p">)</span>
+    <span class="n">glMatrixMode</span><span class="p">(</span> <span class="n">GL_MODELVIEW</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>Notera att här är några värden redan inskrivna, de är nödvändiga. <em>GL_PROJECTION</em> och <em>GL_MODELVIEW</em> är nämligen två av OpenGLs hundratals konstanter. Vill ni veta mer om dessa hänvisas ni till OpenGLs dokumentation. Kortfattat sätter vi renderingsytan till att rita i 2D över hela GLUT-fönstret.</p>
+
+<ol>
+<li><strong>Rita med OpenGL</strong>
+Varje gång vi skall rendera till fönstret behöver vi först rensa det från skräpvärden. Sedan kan vi rita trianglar och andra primitiva geometriska figurer. Undrar man då hur man ritar en t.ex. en inladdad JPEG/PNG-bild är svaret att dessa måste ritas <em>på trianglar</em>. Lyckligtvis använder vi i denna uppgift OpenGLs <em>intermediate mode</em>, som i förhållande till de andra metoder som OpenGL erbjuder, har sämre prestanda. Här nedan, låt <em>w_width</em> och <em>w_height</em> betäckna GLUT-fönstrets nuvarande storlek.</li>
+</ol>
+
+<div class="codehilite"><pre><span></span><code>    <span class="n">glClear</span><span class="p">(</span> <span class="n">GL_COLOR_BUFFER_BIT</span> <span class="p">)</span>
+    <span class="n">glLoadIdentity</span><span class="p">()</span>
+
+    <span class="n">glBegin</span><span class="p">(</span> <span class="n">GL_QUADS</span> <span class="p">)</span>
+    <span class="n">glVertex2f</span><span class="p">(</span> <span class="mf">10.0</span><span class="p">,</span> <span class="o">*</span><span class="n">w_height</span><span class="o">*</span> <span class="o">-</span> <span class="mi">10</span> <span class="p">)</span>
+    <span class="n">glVertex2f</span><span class="p">(</span> <span class="o">*</span><span class="n">w_width</span><span class="o">*</span> <span class="o">-</span> <span class="mi">10</span><span class="p">,</span> <span class="o">*</span><span class="n">w_height</span><span class="o">*</span> <span class="o">-</span> <span class="mi">10</span> <span class="p">)</span>
+    <span class="n">glVertex2f</span><span class="p">(</span> <span class="o">*</span><span class="n">w_width</span><span class="o">*</span> <span class="o">-</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">10.0</span> <span class="p">)</span>
+    <span class="n">glVertex2f</span><span class="p">(</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">10.0</span> <span class="p">)</span>
+    <span class="n">glEnd</span><span class="p">()</span>
+
+    <span class="n">glutSwapBuffers</span><span class="p">()</span>
+</code></pre></div>
+
+<p>Detta kommer att rensa fönstrets färgbuffer (<em>GL_COLOR_BUFFER_BIT</em>), återsälla koordinatsystemet (<em>glLoadIdentity()</em>) och börja rita ut en fyrhörning med de hörn-koordinater som speciferas mellan <em>glBegin( GL_QUADS )</em> och <em>glEnd()</em>. Funktionen <em>glutSwapBuffers()</em> är det som gör att det ritade innehållet faktiskt skickas till GLUT-fönstret.</p>
+
+<p>Om programmet är korrekt skrivet borde ett fönter med en vit rektangel synas. Det är mycket lätt att något gått fel, <strong>kontrollera att allt har genomförts i rätt ordning!</strong> Även kan det vara att delmomentet med GLUT inte är rätt. Notera att om OpenGL har ett internt fel så kommer detta inte nödvändigtvis upp i felloggen när programmet körs.</p>
+
+<p>Det är kanske uppenbart men viktigt att säga att alla fel måste åtgärdas innan ni fortsätter, syns inget nu kommer inget att synas senare.</p>
+
+<ol>
+<li><strong>Färg och Texturer</strong>
+En vit triangel är kanske inte så imponerande, så för att byta färg på ett hörn kan kommandot <em>glColor3f( Float red, Float green, Float blue )</em> sättas innan ett funktionsanropp till <em>glVertex2f( Float x, Float y )</em>. Pröva gärna detta.</li>
+</ol>
+
+<p>Men vill vi använda bilder behöver vi först ladda in bilden till en textur som kan ritas på våran fyrhörning. När en textur skapas kommer detta att ske på OpenGLs server, vilket betyder att du kommer inte (som en OpenGL-klient) att ha direkt tillgång till den. Istället kommer du att få ett nummer (<em>Integer</em>) som hänvisar till den skapta texturen. Varje gång du sedan vill använda texturen måste du ange detta referensnummer. Ett tips är att skriva detta som en funktion.</p>
+
+<div class="codehilite"><pre><span></span><code>    <span class="n">texture</span> <span class="o">=</span> <span class="n">glGenTextures</span><span class="p">(</span> <span class="mi">1</span> <span class="p">)</span>
+    <span class="k">if</span> <span class="n">texture</span> <span class="ow">is</span> <span class="ow">not</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1">#If it is 0, then it failed to create the texture</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span> <span class="o">*</span><span class="n">String</span> <span class="n">path</span><span class="o">*</span> <span class="p">)</span>
+        <span class="n">image_width</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">image_height</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">image_data</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span> <span class="s2">&quot;raw&quot;</span><span class="p">,</span> <span class="s2">&quot;RGBX&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span> <span class="p">)</span>
+        <span class="n">glActiveTexture</span><span class="p">(</span> <span class="n">GL_TEXTURE0</span> <span class="p">)</span>
+        <span class="n">glBindTexture</span><span class="p">(</span> <span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">texture</span> <span class="p">)</span>
+        <span class="n">glTexParameteri</span><span class="p">(</span> <span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_WRAP_S</span><span class="p">,</span> <span class="n">GL_REPEAT</span> <span class="p">)</span>
+        <span class="n">glTexParameteri</span><span class="p">(</span> <span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_WRAP_T</span><span class="p">,</span> <span class="n">GL_REPEAT</span> <span class="p">)</span>
+        <span class="n">glTexParameteri</span><span class="p">(</span> <span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_MAG_FILTER</span><span class="p">,</span> <span class="n">GL_NEAREST</span> <span class="p">)</span>
+        <span class="n">glTexParameteri</span><span class="p">(</span> <span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="n">GL_TEXTURE_MIN_FILTER</span><span class="p">,</span> <span class="n">GL_NEAREST</span> <span class="p">)</span>
+        <span class="n">glTexImage2D</span><span class="p">(</span> <span class="n">GL_TEXTURE_2D</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">image_width</span><span class="p">,</span> <span class="n">image_height</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">GL_RGBA</span><span class="p">,</span> <span class="n">GL_UNSIGNED_BYTE</span><span class="p">,</span> <span class="n">image_data</span> <span class="p">)</span>
+</code></pre></div>
+
+<p>Detta kan kännas mycket för att endast ladda in en bild, men det är nödvändigt för att överföra bilden till OpenGL. Kortfattat behöver du inte veta exakt vad detta gör om du inte vill tillsätta mängder av effekter eller ändra inställningar till texturen, varpå du bör läsa dokumentationen. Men kortfattat öppnar vi en bild via PIL.Image, skapar en textur (<em>glGenTextures</em>), säger att hedanefter vill vi använda den i alla sammanhang som involverar tvådimensionella texturer (<em>glBindTexture</em>) och sätter ett antal inställningar för filter och utritning (<em>glTexParameteri</em>). Variabeln texture kommer då att innehålla referensen till texturen. Komihåg att radera texturen när du inte behöver den längre, med <em>glDeleteTexture( texture )</em>.</p>
+
+<p>Nu kan vi uppdatera renderingsfunktionen till att använda den nya texturen.</p>
+
+<div class="codehilite"><pre><span></span><code>    <span class="o">...</span>
+
+    <span class="n">glEnable</span><span class="p">(</span> <span class="n">GL_TEXTURE_2D</span> <span class="p">)</span>
+
+    <span class="n">glBegin</span><span class="p">(</span> <span class="n">GL_QUADS</span> <span class="p">)</span>
+    <span class="n">glTexCoord2f</span><span class="p">(</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">)</span>
+    <span class="n">glVertex2f</span><span class="p">(</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">*</span><span class="n">w_height</span><span class="o">*</span> <span class="p">)</span>
+    <span class="n">glTexCoord2f</span><span class="p">(</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">)</span>
+    <span class="n">glVertex2f</span><span class="p">(</span> <span class="o">*</span><span class="n">w_width</span><span class="o">*</span><span class="p">,</span> <span class="o">*</span><span class="n">w_height</span><span class="o">*</span> <span class="p">)</span>
+    <span class="n">glTexCoord2f</span><span class="p">(</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span> <span class="p">)</span>
+    <span class="n">glVertex2f</span><span class="p">(</span> <span class="o">*</span><span class="n">w_width</span><span class="o">*</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">)</span>
+    <span class="n">glTexCoord2f</span><span class="p">(</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span> <span class="p">)</span>
+    <span class="n">glVertex2f</span><span class="p">(</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">)</span>
+    <span class="n">glEnd</span><span class="p">()</span>
+
+    <span class="n">glDisable</span><span class="p">(</span> <span class="n">GL_TEXTURE_2D</span> <span class="p">)</span>
+
+    <span class="o">...</span>
+</code></pre></div>
+
+<p>Först säger vi att vi vill använda texturer istället för färg med <em>glEnable( GL_TEXTURE_2D )</em>. Notera att <em>glColor3f</em> kommer inte att ha någon verkan tills <em>glDisable( GL_TEXTURE_2D )</em> har kallats. <em>glTexCoord2f</em> fungerar ungefär som <em>glColor3f</em>, men istället för att ta de olika färgkomponenterna tar den istället en koordinat på texturen mellan 0.0 och 1.0. Andra värden kan användas. Om vi t.ex. byter ut 1.0 mot 10.0 skulle texturen återupprepas 10 ggr på fyrhörningen.</p>
+
+<p>Detta är allt som kommer att täckas i denna uppgiften om OpenGL. Men det finns mycket (<em>mycket</em>) mer som kan användas. Besök gärna deras <a href="https://www.opengl.org/">officiella hemsida</a>.</p>
+
+<h2>Delmoment - A*</h2>
+
+<p>Du kommer att beöva implementera en algorithm som letar upp den kortaste vägen i en graf genom att följa olika noder på grafen. I denna alorithmen känner varje nod till vilka andra noder den är sammankopplad med, så kallade kanter.</p>
+
+<p>Varje nod i en väg från startnoden till slutnoden har tre stycket kostnader. Den så kallade G-kostnaden (anger kostnaden från startnoden till sig själv), H-kostnaden (kostnaden från sig själv till slutnoden ) och F-kostnaden ( Summan av G- och H-kostnaderna ). Den väg av noder som har minst kostnad är den som är kortast/snabbast/billigast att ta.</p>
+
+<p>För att implementera denna algorithm kan du följa nedanstående algorithm:</p>
+
+<ul>
+<li><em>parent</em> är en referens hos en nod till dess föregående nod i en väg.</li>
+<li><em>start_node</em> anger startnoden.</li>
+<li><em>end_node</em> anger slutnoden.</li>
+<li><em>open_nodes</em> anger noder som är markerade som 'öppna'</li>
+<li><em>closed_nodes</em> anger noder som är markerade som 'stängda'</li>
+<li><em>current</em> anger den nod som är markerad som 'aktiv'</li>
+<li><em>iteration</em> anger ett värde på en räknare.</li>
+<li><em>max_interations</em> anger det största antalet iterationer som är tillåtet, t.ex. 200.</li>
+</ul>
+
+<ol>
+<li><p>Kontrollera att <em>start_node</em> och <em>end_node</em> är existerande noder. Är en av dem inte existerande, finns det ingen väg.</p></li>
+<li><p>Se till att <em>start_node</em> och <em>end_node</em> är tillåtna att beträdas. Skulle någon inte vara det så finns det ingen väg.</p></li>
+<li><p>Är <em>start_node</em> den valda <em>end_node</em> finns det ingen väg, man är redan framme.</p></li>
+<li><p>Markera <em>start_node</em> som <em>current</em> och som <em>öppen</em>.</p></li>
+<li><p>Beräkna <em>current</em> nodens G-, H- och F-kostnad.</p></li>
+<li><p>Har <em>iteration</em> översigit <em>max_iterations</em> så finns det <strong>troligen</strong> ingen väg. Eller är <em>current</em> inte en nod finns det <strong>definitivt</strong> ingen väg. Annars öka <em>iteration</em> med 1.</p></li>
+<li><p>Leta upp den nod som har minst F-kostnad i <em>open_nodes</em> och sätt den som den nya <em>curent</em>. Är denna nod samma som <em>end_node</em>, så hoppa till steg <strong>11</strong>. Finns det ingen nod med lägst kostnad så finns det ingen väg.</p></li>
+<li><p>Avmarkera <em>current</em> från <em>öppen</em>. Markera <em>current</em> istället som <em>stängd</em>.</p></li>
+<li><p>Leta igenom <em>current</em> nodens kanter:</p>
+
+<ul>
+<li>Är kantnoden inte tillgänglig eller stängd, ignorera.</li>
+<li>Är den redan öppen: om den nya G-kostnaden är större än den G-kostnad de sattes som öppen med, ignorera den.</li>
+<li>Annars markera som <em>öppen</em> och sätt dess <em>parent</em> som <em>current</em> samt beräkna den nya F-kostnaden.</li>
+</ul></li>
+<li><p>Hoppa till steg <strong>6</strong>. </p></li>
+<li><p>Avmarkera all noder som <em>öppna</em> och <em>stängda</em>.</p></li>
+<li><p>Följ kedjan av den nuvarande <em>current</em> nodens <em>parent</em> som nu anger kedjan av noder från <em>start_node</em> till <em>end_node</em> baklänges.</p>
+
+<p>Tips: Att beräkna kostnaderna för noder som ligger i ett rutnät är relativt enkelt. Ett hopp i sidled kostar 10 och ett diagonalt hopp kostar 14. Detta ger generellt givande resultat.</p></li>
+</ol>
+
+<h2>Delmoment - Sammansättning</h2>
+
+<p>Nu är uppgiften att använda alla delmomenten för att bygga ett program som slumpmässigt väljer en start- och slutnod på ett bräde med noder i ett rutnät. Slumpmässigt är några noder markerade som obeträdbara och en väg från start- till slutnoden får inte innehålla en sådan nod. Alla noderna skall ritas ut som punter på brädet med olika färger, beroende om noden är beträdbar eller ej. Vägen som beräknas mellan noderna skall ritas ut, eller inte ritas ut om en väg inte finns.</p>
+
+<h2>Utbyggnad</h2>
+
+<p>Eftersom du använder OpenGL som har stöd för tredimensionella renderingar kan du alltid försöka överföra uppgiften till den tredje dimensionen och rita ut med flera texturer. <strong>Svårighetsgrad 3</strong></p>
+
+<p>Lycka till!</p>
+</body></html>
