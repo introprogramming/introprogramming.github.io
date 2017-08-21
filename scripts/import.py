@@ -54,7 +54,7 @@ def main():
 
     print "Done"
     print '%d exercises can be found in the directory "%s" and in the archive "%s"' % (
-        len(exercise_list), EXTRACT_DIR, FINAL_ZIP_PATH)
+        len(sorted_exercise_list), EXTRACT_DIR, FINAL_ZIP_PATH)
 
 
 def sort_exercise_list(exercise_list, grading_list):
