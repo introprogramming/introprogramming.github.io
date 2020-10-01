@@ -1,3 +1,5 @@
+# An amazing project
+
 # Course website
 
 For news and information about the course.
