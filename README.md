@@ -1,8 +1,8 @@
-# Course website
+## Course Website.
 
 For news and information about the course.
 
-## Developing
+## Developing.
 
 The Site uses [gulp](http://gulpjs.com/) for building the site's CSS, which is written in [Sass](http://sass-lang.com/).
 
